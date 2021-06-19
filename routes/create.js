@@ -94,20 +94,38 @@ router.post("/preview-b",(req, res, next) => {
     })
 })
 
-router.post("/confirm",(req, res, next) => {
 
-})
 
 
 
 router.post("/result",
     (req, res, next) => {
-        const user_id = req.session.user_id
+        // 登録処理
+        // HP作成者id
+        const owner_id = req.session.user_id
+        // 店の名前
         const shop_name = req.body.shop_name
-        let statement = []
-
-
-
+        const postal_code = req.body.postal_code
+        // 都道府県
+        const address_1 = req.body.address_1
+        // 市区町村
+        const address_2 = req.body.address_2
+        // 番地
+        const address_3 = req.body.address_3
+        // 最寄り駅
+        const station = req.body.station
+        // 電話番号
+        const phone_number =  req.body.phone_number
+        const statement = [
+            shop_name,
+            postal_code,
+            address_1,
+            address_2,
+            address_3,
+            station,
+            phone_number
+        ]
+        const sql = ""
     })
 
 
