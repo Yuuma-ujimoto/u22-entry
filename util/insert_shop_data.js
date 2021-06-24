@@ -13,8 +13,10 @@ module.exports = (req,res,next)=>{
     const mail_address = req.body.mail_address
     const phone_number =  req.body.phone_number
     const category = req.body.category
+    const template_type = 1
     const statement = [
         shop_name,
+        shop_genre,
         postal_code,
         address_1,
         address_2,
@@ -23,6 +25,8 @@ module.exports = (req,res,next)=>{
         mail_address,
         phone_number,
         category,
+        template_type
     ]
-    const template_type = 1
+
+    const sql = "insert into shop(shop_name,)"
 }
