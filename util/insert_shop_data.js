@@ -4,6 +4,7 @@ const connection = require("../config/mysql")
 
 module.exports = (req,res,next)=>{
     const shop_name = req.body.shop_name
+    const owner_id = req.session.user_id;
     const shop_genre = req.body.genre
     const postal_code = req.body.postal_code
     const address_1 = req.body.address_1
@@ -17,6 +18,7 @@ module.exports = (req,res,next)=>{
     const statement = [
         shop_name,
         shop_genre,
+        owner_id,
         postal_code,
         address_1,
         address_2,
@@ -28,5 +30,13 @@ module.exports = (req,res,next)=>{
         template_type
     ]
 
-    const sql = "insert into shop(shop_name,)"
+    const sql = "insert into shop(shop_name,owner_id,shop_genre,prefectures,municipality,station,open_time,close_time,mail_address,phone_number,template_type) values(?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    connection.query(sql,statement,err => {
+        if(err){
+            console.log(err)
+            res.render("error/server-error")
+            return
+        }
+        next()
+    })
 }
