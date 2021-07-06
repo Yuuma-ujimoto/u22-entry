@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <title>Todo App</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+          type="text/css">
+    <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic"
+          rel="stylesheet" type="text/css"/>
+    <!-- Third party plugin CSS-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css"
+          rel="stylesheet"/>
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="/css/style.css" rel="stylesheet"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="/js/task.js"></script>
+</head>
+
+<body>
+<%- include("../base/header") %>
+
+<main>
+
+    <div class="py-5" style="">
+        <div class="container w-50">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-12 alert alert-warning" id="warning">
+                        <p id="warning_message">warning</p>
+                    </div>
+                </div>
+                    <a href="/create">c</a>
+            </div>
+        </div>
+    </div>
+</main>
+
+<div class="fixed-bottom d-flex justify-content-end">
+    <div data-toggle="modal" data-target="#exampleModal">
+        <i class="fas fa-plus fa-5x m-3"></i>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="pt-5 d-flex flex-column align-items-center">
+                    <div class="col-md-12">
+                        <div class="form-group col-12 d-flex align-items-center flex-column">
+                            <div class="col-10 pt-2">
+                                <label for="task_contents" class="col-4 col-form-label">タスク内容</label>
+                            </div>
+                            <div class="col-10 pt-2">
+                                <textarea class="form-control" id="task_contents" name="task_contents"
+                                          style="height: 200px;resize: none" placeholder="task_contents"></textarea>
+                            </div>
+                            <div class="col-10 pt-2 d-flex justify-content-end">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button id="submit-button" type="submit" class="btn btn-info" data-dismiss="modal">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/done-task.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+</body>
+
+</html>

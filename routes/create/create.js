@@ -1,0 +1,226 @@
+const express = require("express")
+const router = express.Router()
+const connection = require("../../config/mysql")
+
+const set_list = require("../../util/set_list")
+router.use((req, res, next) => {
+    if (!req.session.user_id) {
+        res.render("error/client-error")
+        return
+    }
+    next()
+})
+
+// 作成フォーム
+router.get("/",
+    (req, res, next) => {
+        res.render("create-page/form")
+    })
+
+// DBに仮登録
+router.post("/confirm-and-db-insert",
+    (req, res, next) => {
+        console.log(req.body)
+        //店名
+        const shop_name = req.body.shop_name
+        // ジャンル
+        const shop_genre = req.body.category
+        // 作成者
+        const owner_id = req.session.user_id
+        // 郵便番号
+        const postal_code = req.body.postal_code
+        // 都道府県
+        const address_1 = req.body.address_1
+        // 市区町村
+        const address_2 = req.body.address_2
+        // 番地
+        const address_3 = req.body.address_3
+        // 最寄り
+        const station = req.body.station
+        // 開店時間
+        const open_time = req.body.open_time
+        // 閉店時間
+        const close_time = req.body.close_time
+        // メールアドレス
+        const mail_address = req.body.mail_address
+        // 電話番号
+        const phone_number = req.body.phone_number
+        //　テンプレートの型
+        const template_type = 1
+
+        const statement = [
+            shop_name,
+            shop_genre,
+            owner_id,
+            postal_code,
+            address_1,
+            address_2,
+            address_3,
+            station,
+            open_time,
+            close_time,
+            mail_address,
+            phone_number,
+            template_type
+        ]
+
+        const sql = "insert into shop(shop_name,shop_genre,owner_id,postal_code,prefectures,municipality,address,station,open_time,close_time,mail_address,phone_number,template_type) values(?,?,?,?,?,?,?,?,?,?,?,?,?)"
+        connection.query(sql, statement, err => {
+            if (err) {
+                console.log("err1")
+                console.log(err)
+                res.render("error/server-error")
+                return
+            }
+            next()
+        })
+    }, (req, res, next) => {
+        const owner_id = req.session.user_id;
+        const day_off_list = req.body.regular_day_off;
+
+        if (!day_off_list) {
+            console.log("定休日なし")
+            next()
+        }
+        const sql = "insert into day_off(day_off,shop_id) values(?,(select max(id) from shop where owner_id = ?))"
+        // 定休日ひとつだけ
+        if (typeof day_off_list === "string") {
+            console.log("a")
+            connection.query(sql, [day_off_list, owner_id], err => {
+                if (err) {
+                    console.log("err2-1")
+                    console.log(err)
+                    res.render("error/server-error")
+                    return
+                }
+                next()
+                return;
+            })
+        } else {
+            day_off_list.forEach(day_off => {
+                connection.query(sql, [day_off, owner_id], err => {
+                    if (err) {
+                        console.log("err2")
+                        console.log(err)
+                        res.render("error/server-error")
+                        return
+                    }
+                })
+            })
+            next()
+        }
+    },
+    // メニュー登録
+    (req, res, next) => {
+        console.log(req.files)
+
+        // S3設定
+        let params = {
+            Bucket: "bucket-name",
+            Key: null,
+            Body: null,
+            ContentType: null
+        }
+        //******************************************************************************************************************
+        // 送信データ取得
+        const user_id = req.session.user_id
+        const img = req.files.menu_img
+        const check_img_data = req.body.check_img_data
+        const img_count = parseInt(req.body.img_count)
+        const menu_name_list = set_list(req.body.menu_name)
+        const menu_price_list = set_list(req.body.menu_price)
+        const menu_description_list = set_list(req.body.menu_description)
+
+        //******************************************************************************************************************
+
+
+        //******************************************************************************************************************
+        // 変数宣言
+        // 画像ファイル関係
+        let file_name　//ファイル名
+        let file_ext  //　拡張子
+        let file_split_data // 拡張子取得用にファイル名を分割した値
+        let loop_index = 0 //　ループ回数記録
+        let img_index = 0　// 画像処理回数記録
+        let for_each_end_flag = false
+        let statement
+        //******************************************************************************************************************
+        // 画像登録処理ループ
+        check_img_data.split(",").forEach(i => {
+            // forEach内でDBエラーが発生した場合にループを抜ける
+            if(for_each_end_flag){return}
+
+            // check_img_dataのsplit後のデータは ["true"||"false"]の文字列型配列で文字列型"false"をifにかけるとtrueになるので
+            // toLowerCaseで比較して無理矢理真偽値として出す
+            if (i.toLowerCase() === "true") {
+                // 画像が一枚だけの場合配列にならないのでエラー出る
+                if (img_count === 1) {
+                    file_name = img.md5
+                    file_split_data = img.name.split(".")
+                    file_ext = file_split_data[file_split_data.length - 1]
+                    params.Key = `${file_name}.${file_ext}`
+                    params.Body = img.data
+                    params.ContentType = img.mimetype
+                } else {
+                    file_name = img[img_index].md5
+                    file_split_data = img[img_index].name.split(".")
+                    file_ext = file_split_data[file_split_data.length - 1]
+                    params.Key = `${file_name}.${file_ext}`
+                    params.Body = img[img_index].data
+                    params.ContentType = img[img_index].mimetype
+                }
+                console.log(params)
+                // s3.putObject(params, (err, data) => {
+                //     if (err) {
+                //         console.log("失敗")
+                //         return
+                //     }
+                //     console.log("upload完了")
+                // })
+
+                // SQL
+                const sql = "insert into shop_menu(shop_id,menu_img,menu_name,price,description) value((select max(id) from shop where owner_id = ?),?,?,?,?)"
+                connection.query(sql, [user_id,params.Key,req.body.menu_name[loop_index], req.body.menu_price[loop_index],req.body.menu_description[loop_index]], (err) => {
+                    if (err) {
+                        console.log(err)
+                        for_each_end_flag = true
+                        return
+                    }
+                    img_index += 1
+                })
+            } else {
+                // 画像ない場合
+                const sql = "insert into shop_menu(shop_id,menu_img,menu_name,price,description) value((select max(id) from shop where owner_id = ?),?,?,?,?)"
+                connection.query(sql, [user_id,null,req.body.menu_name[loop_index], req.body.menu_price[loop_index],req.body.menu_description[loop_index]], (err) => {
+                    if (err) {
+                        console.log(err)
+                        for_each_end_flag = true
+                    }
+                })
+                if(for_each_end_flag){
+                    return
+                }
+            }
+            loop_index += 1
+        })
+
+        if(for_each_end_flag){
+            res.render("error/server-error")
+            return
+        }
+
+        next()
+    }, (req, res, next) => {
+        const sns_data = set_list(req.body.sns)
+        const sns_url = set_list(req.body.sns_url)
+        next()
+    }, (req, res) => {
+
+        res.send("preview")
+    })
+
+router.get("/result", (req, res) => {
+    res.render("result")
+})
+
+module.exports = router
