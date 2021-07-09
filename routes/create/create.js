@@ -213,10 +213,25 @@ router.post("/confirm-and-db-insert",
     }, (req, res, next) => {
         const sns_data = set_list(req.body.sns)
         const sns_url = set_list(req.body.sns_url)
+        const sql = "insert into shop_sns(shop_id,sns_type,url) value(?,?,(select max(id) from shop where owner_id = ?))"
+
+        let db_insert_err_flag = false
+        for(let loop_count=0;loop_count<sns_data.length;loop_count++){
+            connection.query(sql,[sns_data[loop_count],sns_url[loop_count],req.session.user_id],err => {
+                if(err){
+                    console.log(err)
+                    db_insert_err_flag = true
+                }
+            })
+            if(db_insert_err_flag){
+                res.render("error/server-error")
+                return
+            }
+        }
         next()
     }, (req, res) => {
-
-        res.send("preview")
+    const sql = "select id from shop where update_at = (select max(update_at) from a where soft_delete = 0) "
+    res.render("preview-and-confirm")
     })
 
 router.get("/result", (req, res) => {

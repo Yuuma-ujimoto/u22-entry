@@ -1,0 +1,269 @@
+@charset 'utf-8';
+
+* {
+    outline: none;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-family: "ヒラギノ角ゴ ProN W3", Meiryo, sans-serif;
+    font-size: 1.6rem;
+    line-height: 1.75;
+    letter-spacing: 0.1em;
+    /* background-color: #F6F4EF; */
+    overflow: hidden scroll;
+    color: #333;
+    background-color: #F6F4EF;
+
+}
+
+h1 {
+    text-align: center;
+    font-size: 3.4vw;
+    text-align: left;
+    position: absolute;
+    top: 38%;
+    left: 15%;
+    font-weight: bold;
+    line-height: 5vw;
+
+}
+
+.hbr{
+    padding-left: 13vw;
+}
+
+
+.sample1 * {
+    display: none;
+    height: 0px;
+}
+
+.yoko {
+    display: flex;
+}
+
+.form_wrap {
+    width: 60vw;
+    margin: 0 auto 7vh auto;
+    background-color: #fff;
+    padding: 5vw 7vw 2vw 7vw;
+    border-radius: .4vw;
+    box-shadow: 0 0 2rem rgb(0 0 0 / 10%);
+}
+
+.submit,.reset {
+    margin: 70px auto 0 0;
+    width: 200px;
+    white-space: nowrap;
+    padding: 25px 0;
+    text-decoration: none;
+    color: #fff;
+    background-color: #11BEAE;
+    border-radius: 10px;
+    border: solid 1px #11BEAE;
+    font-size: 20px;
+    text-align: center;
+    font-weight: bold;
+
+}
+
+.submit:hover,.reset:hover{
+    transform:scale(1.1,1.1);
+}
+
+.submit{
+    margin-left: 10vw;
+}
+
+.submitbtn{
+    text-align: center;
+}
+
+
+input[type="button"]:hover,input[type="submit"]{
+    cursor: pointer;
+}
+
+label:not(.category1 label,.category2 label) {
+    font-weight: bold;
+}
+
+label{
+    font-size: 18px;;
+}
+
+.require {
+    padding: 1px 8px;
+    margin-left: 10px;
+    font-size: 16px;
+    background-color: #BE416B;
+    color: #fff;
+    border-radius: 10%;
+}
+
+.input {
+    margin: 0px 0 40px 0;
+}
+
+input[type="time"] {
+    height: 50px;
+    width: 150px;
+    color: #333;
+    font-size: 16px;
+    padding-left: 10px;
+}
+
+.input:focus {
+    border-color: #11BEAE;
+}
+
+.category1,
+.category2 {
+    display: flex;
+
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+    top: 5px;
+    position: relative;
+    margin-right: 10px;
+}
+
+.week label {
+    margin-right: 50px;
+}
+
+.category_wrap label{
+    width: 100px;
+}
+
+.short{
+    width: 170px !important;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="tel"],
+input[type="url"] {
+    height: 50px;
+    width: 560px;
+    margin-top: 5px;
+    font-size: 16px;
+    padding-left: 10px;
+}
+
+textarea{
+    padding: 10px;
+    font-size: 16px;
+}
+
+input[type="number"] {
+    width: 250px;
+}
+
+input {
+    border: 1px solid #ced4da;
+}
+
+
+button {
+    height: 40px;
+    width: 40px;
+    font-size: 26px;
+    border: 1px solid #ced4da;
+    border-radius: 10px;
+    vertical-align: middle;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+select {
+    height: 50px;
+    width: 200px;
+    border: 1px solid #ced4da;
+    color: #333;
+    padding-left: 8px;
+    font-size: 16px;
+
+}
+
+.js-button {
+    height: 45px;
+    width: 130px;
+    margin: auto auto;
+    font-size: 20px;
+}
+
+input[type="file"] {
+    border: none;
+    height: 40px;
+}
+
+.snspbtn,
+.menupbtn {
+    margin-bottom: 40px;
+}
+
+.kara {
+    font-size: 20px;
+}
+
+.kara_wrap {
+    line-height: 25px;
+    margin: auto 10px auto 10px;
+}
+
+input:focus,textarea:focus {
+    border: solid 1px #11bead9d;
+    box-shadow:0 0 6px rgb(128, 128, 128);
+}
+
+hr{
+    display: block;
+    height: 1px;
+    background-color: #e6e9e8;
+    color: #e6e9e8;
+    width: 700px;
+    margin-bottom: 10px;
+    border: none;
+}
+.ex_box{
+    height: 70px;
+    width: 560px;
+    color: #333;
+    border: 1px solid #ced4da;
+}
+
+.top{
+    width: 100vw;
+    height: 80vh;
+    position: relative;
+    /* margin-bottom: 24vh; */
+
+
+}
+.logo{
+    position: absolute;
+    width: 6vw;
+    top: 1vh;
+    left: 2vw;
+
+}
+
+.girl{
+    height: 22vw;
+    position: absolute;
+    right: 20%;
+    top: 25%;
+
+}

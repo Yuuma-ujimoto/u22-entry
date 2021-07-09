@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="Boulangerie HALのサイトです。">
+    <title>Sample</title>
+    <link rel="stylesheet" href="/preview/css/normalize.css">
+    <link rel="stylesheet" href="/preview/css/style.css">
+    <link rel="stylesheet" href="/preview/css/slimbox.css">
+    <link rel="stylesheet" href="/preview/css/slick.css">
+    <link rel="stylesheet" href="/preview/css/slick-theme.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script type="text/javascript" src="/preview/js/slick.min.js"></script>
+    <script type="text/javascript" src="/preview/js/slideshow.js"></script>
+    <script type="text/javascript" src="/preview/js/slimbox.js"></script>
+    <script type="text/javascript" src="/preview/js/slide.js"></script>
+    <script type="text/javascript" src="/preview/js/scroll.js"></script>
+    <script type="text/javascript" src="/preview/js/header.js"></script>
+    <link rel="shortcut icon" href="/preview/images/bread.png">
+</head>
+
+<body>
+
+<!--ヘッダー-->
+<header>
+    <div class="full">
+        <div class="img01"></div>
+        <div class="img02"></div>
+        <div class="img03"></div>
+    </div>
+    <div class="logo">
+        <h1>
+            <img src="/preview/images/logo02.svg" alt="ロゴ" class="logo" >
+        </h1>
+    </div>
+    <p class="tate">日常に寄り添った<br>美味しいパンを<br>お届けします。</p>
+    <a href="#menu">
+        <table class="header_table">
+            <tr>
+                <td>最新のメニューは<br>こちらから</td>
+                <th>MENU</th>
+            </tr>
+        </table>
+    </a>
+    <div id="ticKer">
+        <ul id="ulArea">
+            <!-- ul要素 箇条書き,リスト -->
+            <li><a href="#news">[2020.11.30]オーベルニュ地方フェアを開催</a></li>
+            <li><a href="#news">[2020.11.16]オレンジを使用した季節限定デザートを販売</a></li>
+            <li><a href="#news">[2020.11.08]ブルーチーズを使ったフェア限定商品を販売</a></li>
+        </ul>
+    </div>
+</header>
+
+
+<!--ナビゲーション-->
+<div class="nav">
+    <nav>
+        <div class="nav_img">
+            <a href="#">
+                <img src="/preview/images/logo01.svg" alt="">
+            </a>
+        </div>
+        <ul>
+            <li class="global-item"><a href="#">HOME</a></li>
+            <li class="global-item"><a href="#menu">MENU</a></li>
+            <li class="global-item"><a href="#news">NEWS</a></li>
+            <li class="global-item"><a href="#address">ADDRESS</a></li>
+        </ul>
+    </nav>
+
+</div>
+
+<div class="clear">
+
+</div>
+
+
+
+
+<!--メニュー-->
+<div class="menu">
+    <div class="h2" id="menu">
+        <h2>MENU</h2>
+    </div>
+    <div class="menu_image fadein">
+        <img src="/preview/images/tenpo05.jpg" alt="フランスパン" class="menuimage">
+    </div>
+    <ul>
+
+        <li class="fadein">
+            <a href="<%-i.url%>" rel="lightbox" title="フワス　ヴェルヴェンヌ"><img src="/preview/images/pain001.jpg" alt=""></a>
+            <h3><%-i.title%></h3>
+            <p><%-i.description%></p>
+        </li>
+
+    </ul>
+</div>
+
+<!--新着情報-->
+<!--  メニューの上の方がいいのかも -->
+<div class="news">
+    <div class="h2" id="news">
+        <h2>NEWS</h2>
+    </div>
+    <table class="fadein">
+        <tr>
+            <th>2020.11.30</th>
+            <td>名産ブルーチーズ「フルム・ダンベール」を使ったパンや郷土料理をアレンジした惣菜パンなど、フェア限定商品をご用意しております。</td>
+        </tr>
+        <tr>
+            <th>2020.11.16</th>
+            <td>ご好評いただいております、デザートに、季節限定でオレンジを使用したデザートが加わります。</td>
+        </tr>
+        <tr>
+
+            <th>2020.11.8</th>
+            <td>フランス　オーベルニュ地方の伝統パンや郷土料理の惣菜パンなどを販売するオーベルニュ地方フェアを開催いたします。</td>
+        </tr>
+    </table>
+
+</div>
+
+
+<!--アドレス-->
+<div class="address">
+    <div class="h2" id="address">
+        <h2>ADDRESS</h2>
+    </div>
+
+    <div class="address_image fadein">
+        <img src="/preview/images/image3.jpg" alt="店内写真" class="addressimage">
+    </div>
+    <div class="address_content fadein">
+
+
+        <h4>Boulangerie HAL</h4>
+        <p class="address_p">住所：<span class="adddress">東京都渋谷区猿楽町29-18</span><br>
+            電話：<span class="tel">03-3344-1010</span><br>
+        </p>
+        <p>
+            東急東横線［代官山駅］下車　徒歩3分<br>
+            東急東横線・地下鉄日比谷線［中目黒駅］下車 徒歩7分<br>
+            JR山手線・JR埼京線・地下鉄日比谷線［恵比寿駅］下車 徒歩10分<br>
+        </p>
+        <p>
+            営業時間：10:00～20:00<br>
+        </p>
+        <p>定休日：</p>
+
+    </div>
+    <div class="map_img fadein">
+        <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1621.0908729024638!2d139.69964074330827!3d35.64789358540413!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188b45f5311ed1%3A0x12987f54caa1ee65!2z44CSMTUwLTAwMzMg5p2x5Lqs6YO95riL6LC35Yy654y_5qW955S677yS77yZ4oiS77yR77yY!5e0!3m2!1sja!2sjp!4v1433666443406"
+                width="470" height="300" frameborder="0" style="border:0"></iframe>
+    </div>
+</div>
+
+<!--フッター-->
+<footer class="footer">
+    <div class="top">
+        <a href="#" class="top"><img src="/preview/images/top.png" alt="矢印"><br>TOP</a>
+    </div>
+    <p class="small">copyright Boulangerie HAL</p>
+    <div class="sns">
+        <a href="#">
+            <img src="/preview/images/twitter.svg" alt="twitter">
+        </a>
+        <a href="#">
+            <img src="/preview/images/insta.svg" alt="insta">
+        </a>
+    </div>
+</footer>
+
+
+</body>
+
+</html>
