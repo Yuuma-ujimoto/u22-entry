@@ -148,7 +148,9 @@ router.post("/confirm-and-db-insert",
         // 画像登録処理ループ
         check_img_data.split(",").forEach(i => {
             // forEach内でDBエラーが発生した場合にループを抜ける
-            if(for_each_end_flag){return}
+            if (for_each_end_flag) {
+                return
+            }
 
             // check_img_dataのsplit後のデータは ["true"||"false"]の文字列型配列で文字列型"false"をifにかけるとtrueになるので
             // toLowerCaseで比較して無理矢理真偽値として出す
@@ -180,7 +182,7 @@ router.post("/confirm-and-db-insert",
 
                 // SQL
                 const sql = "insert into shop_menu(shop_id,menu_img,menu_name,price,description) value((select max(id) from shop where owner_id = ?),?,?,?,?)"
-                connection.query(sql, [user_id,params.Key,req.body.menu_name[loop_index], req.body.menu_price[loop_index],req.body.menu_description[loop_index]], (err) => {
+                connection.query(sql, [user_id, params.Key, req.body.menu_name[loop_index], req.body.menu_price[loop_index], req.body.menu_description[loop_index]], (err) => {
                     if (err) {
                         console.log(err)
                         for_each_end_flag = true
@@ -191,20 +193,20 @@ router.post("/confirm-and-db-insert",
             } else {
                 // 画像ない場合
                 const sql = "insert into shop_menu(shop_id,menu_img,menu_name,price,description) value((select max(id) from shop where owner_id = ?),?,?,?,?)"
-                connection.query(sql, [user_id,null,req.body.menu_name[loop_index], req.body.menu_price[loop_index],req.body.menu_description[loop_index]], (err) => {
+                connection.query(sql, [user_id, null, req.body.menu_name[loop_index], req.body.menu_price[loop_index], req.body.menu_description[loop_index]], (err) => {
                     if (err) {
                         console.log(err)
                         for_each_end_flag = true
                     }
                 })
-                if(for_each_end_flag){
+                if (for_each_end_flag) {
                     return
                 }
             }
             loop_index += 1
         })
 
-        if(for_each_end_flag){
+        if (for_each_end_flag) {
             res.render("error/server-error")
             return
         }
@@ -216,22 +218,30 @@ router.post("/confirm-and-db-insert",
         const sql = "insert into shop_sns(shop_id,sns_type,url) value(?,?,(select max(id) from shop where owner_id = ?))"
 
         let db_insert_err_flag = false
-        for(let loop_count=0;loop_count<sns_data.length;loop_count++){
-            connection.query(sql,[sns_data[loop_count],sns_url[loop_count],req.session.user_id],err => {
-                if(err){
+        for (let loop_count = 0; loop_count < sns_data.length; loop_count++) {
+            connection.query(sql, [sns_data[loop_count], sns_url[loop_count], req.session.user_id], err => {
+                if (err) {
                     console.log(err)
                     db_insert_err_flag = true
                 }
             })
-            if(db_insert_err_flag){
+            if (db_insert_err_flag) {
                 res.render("error/server-error")
                 return
             }
         }
         next()
     }, (req, res) => {
-    const sql = "select id from shop where update_at = (select max(update_at) from a where soft_delete = 0) "
-    res.render("preview-and-confirm")
+        const sql = "select id from shop where update_at = (select max(update_at) from shop where owner_id = ? and soft_delete = 0) "
+        connection.query(sql, [req.session.user_id], (err, result) => {
+            if (err) {
+                console.log(err)
+                res.render("error/server-error")
+                return
+            }
+            let id = result[0].id
+            res.render("preview-and-confirm2", {id: id})
+        })
     })
 
 router.get("/result", (req, res) => {
