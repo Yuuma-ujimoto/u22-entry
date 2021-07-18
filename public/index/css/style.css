@@ -46,7 +46,6 @@ header {
   top: 0; /* 上から0の位置に固定 */
   left: 0; /* 左から0の位置に固定 */
   display: none; /* ヘッダーバーを非表示 */
-
   z-index: 100;
   padding: 2% 3%;
 }
@@ -73,9 +72,9 @@ header {
   transition: .4s;
 }
 .header_searchbtn:hover,.header_madebtn:hover {
-  color: #11BEAE;
-  background-color: rgba(0, 0, 0, 0);
-  border: solid 1px #11BEAE;
+  color: #fff;
+  background-color:#11AABD;
+  border: solid 1px #11AABD;
 }
 
 /* メインタイトル */
@@ -135,9 +134,9 @@ h1 {
   transition: .4s;
 }
 .main_searchbtn:hover,.main_madebtn:hover {
-  color: #11BEAE;
-  background-color: rgba(0, 0, 0, 0);
-  border: solid 1px #11BEAE;
+  color: #fff;
+  background-color:#11AABD;
+  border: solid 1px #11AABD;
 }
 
 /* コックさん */
@@ -184,6 +183,8 @@ h1 {
 
 /* アピール１ */
 .one {
+  width: 76%;
+  margin: auto;
   padding-bottom: 10%;
 }
 .appeal {
@@ -212,7 +213,13 @@ h1 {
 
 /* アピール２ */
 .two {
-  margin: 10% 0;
+  width: 76%;
+  margin: 10% auto;
+}
+.two_right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* まとめ */
@@ -239,7 +246,7 @@ h1 {
   width: 100%;
 	height: calc((100vw/12));
   text-align: center;
-	background: #11BEAE;
+	background: linear-gradient(#11BEAE, #11AABD);
 }
 .footer small {
   line-height: calc((100vw/12));

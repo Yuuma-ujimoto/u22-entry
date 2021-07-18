@@ -219,7 +219,9 @@ router.post("/confirm-and-db-insert",
 
         let db_insert_err_flag = false
         for (let loop_count = 0; loop_count < sns_data.length; loop_count++) {
-            connection.query(sql, [sns_data[loop_count], sns_url[loop_count], req.session.user_id], err => {
+            connection.query(sql,
+                [sns_data[loop_count], sns_url[loop_count], req.session.user_id],
+                    err => {
                 if (err) {
                     console.log(err)
                     db_insert_err_flag = true

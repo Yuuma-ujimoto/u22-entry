@@ -8,15 +8,15 @@ $(window).on('load', function() {
 
   // メインタイトル
   ScrollReveal().reveal('.maintitle', {
-  duration: 3000,
-  delay: 2000,
+  duration: 2000,
+  delay: 1500,
   scale: .98
   });
 
   // ボタン周り
   ScrollReveal().reveal('.mainbtn', {
-  duration: 3000,
-  delay: 2000,
+  duration: 2000,
+  delay: 1500,
   scale: .98
   });
 });

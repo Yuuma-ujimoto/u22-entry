@@ -12,6 +12,9 @@ router.get("/",
     }
 })
 
+router.get("/search",(req, res) => {
+    res.render("search/search")
+})
 
 router.get("/bd",(req, res) => {
     req.session.user_id = 1
