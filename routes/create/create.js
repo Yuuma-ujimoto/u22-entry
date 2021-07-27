@@ -82,7 +82,7 @@ router.post("/confirm-and-db-insert",
             console.log("定休日なし")
             next()
         }
-        const sql = "insert into day_off(day_off,shop_id) values(?,(select max(id) from shop where owner_id = ?))"
+        const sql = "insert into shop_day_off(day_off,shop_id) values(?,(select max(id) from shop where owner_id = ?))"
         // 定休日ひとつだけ
         if (typeof day_off_list === "string") {
             console.log("a")
@@ -233,7 +233,12 @@ router.post("/confirm-and-db-insert",
             }
         }
         next()
-    }, (req, res) => {
+    }, (req, res, next) => {
+        // ロゴとかの画像を保存する
+
+    next()
+    },
+    (req, res) => {
         const sql = "select id from shop where update_at = (select max(update_at) from shop where owner_id = ? and soft_delete = 0) "
         connection.query(sql, [req.session.user_id], (err, result) => {
             if (err) {
@@ -246,8 +251,17 @@ router.post("/confirm-and-db-insert",
         })
     })
 
-router.get("/result", (req, res) => {
-    res.render("result")
+router.post("/result", (req, res) => {
+    const id = req.body.id
+    const sql = "update shop set status = 'fin' where id = ?"
+    connection.query(sql,[id],err => {
+        if(err){
+            console.log(err)
+            res.render("error/server-error")
+            return
+        }
+        res.render("result")
+    })
 })
 
 module.exports = router
