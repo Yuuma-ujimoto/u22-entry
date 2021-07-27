@@ -12,8 +12,9 @@ router.post("/",
                 res.json({error:true})
                 return
             }
-            res.json({error:false,result})
+            res.json({error:false,result:result})
         })
     })
+
 
 module.exports = router

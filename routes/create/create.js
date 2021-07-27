@@ -231,7 +231,12 @@ router.post("/confirm-and-db-insert",
             }
         }
         next()
-    }, (req, res) => {
+    }, (req, res, next) => {
+        // ロゴとかの画像を保存する
+
+    next()
+    },
+    (req, res) => {
         const sql = "select id from shop where update_at = (select max(update_at) from shop where owner_id = ? and soft_delete = 0) "
         connection.query(sql, [req.session.user_id], (err, result) => {
             if (err) {
