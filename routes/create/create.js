@@ -1,6 +1,8 @@
 const express = require("express")
 const router = express.Router()
 const connection = require("../../config/mysql")
+const aws = require("aws-sdk")
+
 
 const set_list = require("../../util/set_list")
 router.use((req, res, next) => {
@@ -172,13 +174,13 @@ router.post("/confirm-and-db-insert",
                     params.ContentType = img[img_index].mimetype
                 }
                 console.log(params)
-                // s3.putObject(params, (err, data) => {
-                //     if (err) {
-                //         console.log("失敗")
-                //         return
-                //     }
-                //     console.log("upload完了")
-                // })
+                s3.putObject(params, (err, data) => {
+                    if (err) {
+                        console.log("失敗")
+                        return
+                    }
+                    console.log("upload完了")
+                })
 
                 // SQL
                 const sql = "insert into shop_menu(shop_id,menu_img,menu_name,price,description) value((select max(id) from shop where owner_id = ?),?,?,?,?)"
@@ -221,12 +223,12 @@ router.post("/confirm-and-db-insert",
         for (let loop_count = 0; loop_count < sns_data.length; loop_count++) {
             connection.query(sql,
                 [sns_data[loop_count], sns_url[loop_count], req.session.user_id],
-                    err => {
-                if (err) {
-                    console.log(err)
-                    db_insert_err_flag = true
-                }
-            })
+                err => {
+                    if (err) {
+                        console.log(err)
+                        db_insert_err_flag = true
+                    }
+                })
             if (db_insert_err_flag) {
                 res.render("error/server-error")
                 return
@@ -234,9 +236,34 @@ router.post("/confirm-and-db-insert",
         }
         next()
     }, (req, res, next) => {
+        // 現在編集中
         // ロゴとかの画像を保存する
+        let params = {
+            Bucket: "bucket-name",
+            Key: null,
+            Body: null,
+            ContentType: null
+        }
 
-    next()
+        const logo_img = req.files.logo_img
+        const shop_img = req.files.shop_img
+        if (logo_img) {
+            const logo_img_name = logo_img.md5
+            const logo_img_split_data = log_img.name.split(".")
+            const logo_img_ext = file_split_data[file_split_data.length - 1]
+            params.Key = `${logo_img_name}.${logo_img_ext}`
+            params.Body = logo_img.data
+            params.ContentType = logo_img.mimetype
+
+            s3.putObject(params, (err, data) => {
+                if (err) {
+                    console.log("失敗")
+                    return
+                }
+                console.log("upload完了")
+            })
+        }
+        next()
     },
     (req, res) => {
         const sql = "select id from shop where update_at = (select max(update_at) from shop where owner_id = ? and soft_delete = 0) "
@@ -254,8 +281,8 @@ router.post("/confirm-and-db-insert",
 router.post("/result", (req, res) => {
     const id = req.body.id
     const sql = "update shop set status = 'fin' where id = ?"
-    connection.query(sql,[id],err => {
-        if(err){
+    connection.query(sql, [id], err => {
+        if (err) {
             console.log(err)
             res.render("error/server-error")
             return
