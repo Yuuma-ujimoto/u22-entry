@@ -115,7 +115,7 @@ router.post("/confirm-and-db-insert",
     // メニュー登録
     (req, res, next) => {
         console.log(req.files)
-
+        const s3 = new aws.S3
         // S3設定
         let params = {
             Bucket: "bucket-name",
