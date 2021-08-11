@@ -249,8 +249,8 @@ router.post("/confirm-and-db-insert",
         const shop_img = req.files.shop_img
         if (logo_img) {
             const logo_img_name = logo_img.md5
-            const logo_img_split_data = log_img.name.split(".")
-            const logo_img_ext = file_split_data[file_split_data.length - 1]
+            const logo_img_split_data = logo_img.name.split(".")
+            const logo_img_ext = logo_img_split_data[logo_img_split_data.length - 1]
             params.Key = `${logo_img_name}.${logo_img_ext}`
             params.Body = logo_img.data
             params.ContentType = logo_img.mimetype
