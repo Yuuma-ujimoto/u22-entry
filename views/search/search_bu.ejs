@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eapocchi</title>
+    <link rel="shortcut icon" href="/index/images/logo.ico">
+    <link href="/index/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/index/css/search.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="/index/js/search.js"></script>
+    <script src="https://unpkg.com/scrollreveal"></script>
+</head>
+<body>
+  <div class="wrap">
+    <!-- ヘッダー -->
+    <header class="cb-header">
+      <div class="header_rogo">
+        <a href="/"><img src="/index/images/logo.png" alt="ロゴ"></a>
+      </div>
+      <div class="headerSearch">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-3">
+              <select class="styled-select">
+                <option value="" hidden>エリア</option>
+                <option value="北海道">北海道</option>
+                <optgroup label="東北">
+                  <option value="青森県">青森県</option>
+                  <option value="秋田県">秋田県</option>
+                  <option value="岩手県">岩手県</option>
+                  <option value="山形県">山形県</option>
+                  <option value="宮城県">宮城県</option>
+                  <option value="福島県">福島県</option>
+                </optgroup>
+                <optgroup label="関東">
+                  <option value="茨城県">茨城県</option>
+                  <option value="栃木県">栃木県</option>
+                  <option value="群馬県">群馬県</option>
+                  <option value="埼玉県">埼玉県</option>
+                  <option value="千葉県">千葉県</option>
+                  <option value="東京都">東京都</option>
+                  <option value="神奈川県">神奈川県</option>
+                </optgroup>
+                <optgroup label="中部">
+                  <option value="新潟県">新潟県</option>
+                  <option value="富山県">富山県</option>
+                  <option value="石川県">石川県</option>
+                  <option value="福井県">福井県</option>
+                  <option value="山梨県">山梨県</option>
+                  <option value="長野県">長野県</option>
+                  <option value="岐阜県">岐阜県</option>
+                  <option value="静岡県">静岡県</option>
+                  <option value="愛知県">愛知県</option>
+                </optgroup>
+                <optgroup label="近畿">
+                  <option value="三重県">三重県</option>
+                  <option value="滋賀県">滋賀県</option>
+                  <option value="京都府">京都府</option>
+                  <option value="大阪府">大阪府</option>
+                  <option value="兵庫県">兵庫県</option>
+                  <option value="奈良県">奈良県</option>
+                  <option value="和歌山県">和歌山県</option>
+                </optgroup>
+                <optgroup label="中国">
+                  <option value="岡山県">岡山県</option>
+                  <option value="広島県">広島県</option>
+                  <option value="鳥取県">鳥取県</option>
+                  <option value="島根県">島根県</option>
+                  <option value="山口県">山口県</option>
+                </optgroup>
+                <optgroup label="四国">
+                  <option value="徳島県">徳島県</option>
+                  <option value="香川県">香川県</option>
+                  <option value="愛媛県">愛媛県</option>
+                  <option value="高知県">高知県</option>
+                </optgroup>
+                <optgroup label="九州沖縄">
+                  <option value="福岡県">福岡県</option>
+                  <option value="佐賀県">佐賀県</option>
+                  <option value="長崎県">長崎県</option>
+                  <option value="熊本県">熊本県</option>
+                  <option value="大分県">大分県</option>
+                  <option value="宮崎県">宮崎県</option>
+                  <option value="鹿児島県">鹿児島県</option>
+                  <option value="沖縄県">沖縄県</option>
+                </optgroup>
+              </select>
+            </div>
+            <div class="col-md-3">
+              <select class="styled-select">
+                <option value="" hidden>カテゴリ</option>
+                <option value="和食">和食</option>
+                <option value="洋食">洋食</option>
+                <option value="中華">中華</option>
+                <option value="イタリアン">イタリアン</option>
+                <option value="カフェ・スイーツ">カフェ・スイーツ</option>
+                <option value="居酒屋">居酒屋</option>
+                <option value="ヌードル">ヌードル</option>
+                <option value="その他">その他</option>
+              </select>
+            </div>
+            <div class="col-md-4">
+              <input type="text" placeholder="店名" class="textbox">
+            </div>
+            <div class="col-md-2">
+              <a class="searchbtn" href="#">検索する</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- メイン -->
+    <div class="main">
+      <div class="background">
+      </div>
+      <a href="/" class="rogo">
+        <img src="/index/images/logo.png" alt="ロゴ">
+        <h1>Eapocchi</h1>
+      </a>
+      <div class="mainvisual">
+        <div class="container-fluid">
+          <div class="row">
+              <div class="col-md-8 d-flex align-items-center">
+                <div class="appeal_center">
+                  <h1>
+                    <span class="mvtext1">おなかがすきませんか？</span><br>
+                    <span class="mvtext2">お店を探しましょう</span>
+                  </h1>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <img src="/index/images/drool.png" class="img-fluid" alt="お腹空いてる犬と子供">
+              </div>
+          </div>
+        </div>
+      </div>
+      <!-- 検索バー -->
+      <div class="mainSearch">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-3">
+              <select class="styled-select">
+                <option value="" hidden>エリア</option>
+                <option value="北海道">北海道</option>
+                <optgroup label="東北">
+                  <option value="青森県">青森県</option>
+                  <option value="秋田県">秋田県</option>
+                  <option value="岩手県">岩手県</option>
+                  <option value="山形県">山形県</option>
+                  <option value="宮城県">宮城県</option>
+                  <option value="福島県">福島県</option>
+                </optgroup>
+                <optgroup label="関東">
+                  <option value="茨城県">茨城県</option>
+                  <option value="栃木県">栃木県</option>
+                  <option value="群馬県">群馬県</option>
+                  <option value="埼玉県">埼玉県</option>
+                  <option value="千葉県">千葉県</option>
+                  <option value="東京都">東京都</option>
+                  <option value="神奈川県">神奈川県</option>
+                </optgroup>
+                <optgroup label="中部">
+                  <option value="新潟県">新潟県</option>
+                  <option value="富山県">富山県</option>
+                  <option value="石川県">石川県</option>
+                  <option value="福井県">福井県</option>
+                  <option value="山梨県">山梨県</option>
+                  <option value="長野県">長野県</option>
+                  <option value="岐阜県">岐阜県</option>
+                  <option value="静岡県">静岡県</option>
+                  <option value="愛知県">愛知県</option>
+                </optgroup>
+                <optgroup label="近畿">
+                  <option value="三重県">三重県</option>
+                  <option value="滋賀県">滋賀県</option>
+                  <option value="京都府">京都府</option>
+                  <option value="大阪府">大阪府</option>
+                  <option value="兵庫県">兵庫県</option>
+                  <option value="奈良県">奈良県</option>
+                  <option value="和歌山県">和歌山県</option>
+                </optgroup>
+                <optgroup label="中国">
+                  <option value="岡山県">岡山県</option>
+                  <option value="広島県">広島県</option>
+                  <option value="鳥取県">鳥取県</option>
+                  <option value="島根県">島根県</option>
+                  <option value="山口県">山口県</option>
+                </optgroup>
+                <optgroup label="四国">
+                  <option value="徳島県">徳島県</option>
+                  <option value="香川県">香川県</option>
+                  <option value="愛媛県">愛媛県</option>
+                  <option value="高知県">高知県</option>
+                </optgroup>
+                <optgroup label="九州沖縄">
+                  <option value="福岡県">福岡県</option>
+                  <option value="佐賀県">佐賀県</option>
+                  <option value="長崎県">長崎県</option>
+                  <option value="熊本県">熊本県</option>
+                  <option value="大分県">大分県</option>
+                  <option value="宮崎県">宮崎県</option>
+                  <option value="鹿児島県">鹿児島県</option>
+                  <option value="沖縄県">沖縄県</option>
+                </optgroup>
+              </select>
+            </div>
+            <div class="col-md-3">
+              <select class="styled-select">
+                <option value="" hidden>カテゴリ</option>
+                <option value="和食">和食</option>
+                <option value="洋食">洋食</option>
+                <option value="中華">中華</option>
+                <option value="イタリアン">イタリアン</option>
+                <option value="カフェ・スイーツ">カフェ・スイーツ</option>
+                <option value="居酒屋">居酒屋</option>
+                <option value="ヌードル">ヌードル</option>
+                <option value="その他">その他</option>
+              </select>
+            </div>
+            <div class="col-md-4">
+              <input type="text" placeholder="店名" class="textbox">
+            </div>
+            <div class="col-md-2">
+              <a class="searchbtn" href="#">検索する</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- お店一覧 -->
+    <div class="restaurant_table">
+      <div class="restaurant">
+        <a href="#">
+          <!-- イメージ画像 -->
+          <div class="restaurant_top">
+            <img src="/index/images/sushi.jpg" alt="">
+          </div>
+          <!-- お店の名前とか -->
+          <div class="restaurant_botomm">
+            <div class="restaurant_text">
+              <span class="name">鮨 みやび</span><br>
+              <div class="restaurant_text2">
+                <span class="address">東京都港区赤坂1-11-11</span><br>
+                <span class="category">和食</span>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="restaurant">
+        <a href="#">
+          <div class="restaurant_top">
+            <img src="/index/images/italian.jpg" alt="">
+          </div>
+          <div class="restaurant_botomm">
+            <div class="restaurant_text">
+              <span class="name">クレフピッチェリア</span><br>
+              <div class="restaurant_text2">
+              <span class="address">神奈川県川崎市中原区市ノ坪123-1</span><br>
+              <span class="category">イタリアン</span>
+            </div>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="restaurant">
+        <a href="#">
+          <div class="restaurant_top">
+            <img src="/index/images/cafe.jpg" alt="">
+          </div>
+          <div class="restaurant_botomm">
+            <div class="restaurant_text">
+              <span class="name">cafe ソレイユ</span><br>
+              <div class="restaurant_text2">
+              <span class="address">東京都千代田区丸の内1-2-3</span><br>
+              <span class="category">カフェ・スイーツ</span>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="restaurant">
+        <a href="#">
+          <div class="restaurant_top">
+          </div>
+          <div class="restaurant_botomm">
+            <div class="restaurant_text">
+              <span class="name">お店の名前</span><br>
+              <div class="restaurant_text2">
+              <span class="address">お店の住所</span><br>
+              <span class="category">カテゴリ</span>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="restaurant">
+        <a href="#">
+          <div class="restaurant_top">
+          </div>
+          <div class="restaurant_botomm">
+            <div class="restaurant_text">
+              <span class="name">お店の名前</span><br>
+              <div class="restaurant_text2">
+              <span class="address">お店の住所</span><br>
+              <span class="category">カテゴリ</span>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- ページネーション -->
+    <ol class="pagenation">
+      <li><a class="back" href="">前へ</a></li>
+      <li><span>1</span></li>
+      <li><a class="num" href="">2</a></li>
+      <li><a class="num" href="">3</a></li>
+      <li><a class="num" href="">4</a></li>
+      <li><a class="num" href="">5</a></li>
+      <li><a class="next" href="">次へ</a></li>
+    </ol>
+    <!-- フッター -->
+    <footer class="footer">
+      <small>(C) 2021 Eapocchi</small>
+    </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="/index/js/bootstrap.min.js"></script>
+  </div>
+</body>
+</html>
