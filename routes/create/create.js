@@ -116,6 +116,7 @@ router.post("/confirm-and-db-insert",
     // メニュー登録
     (req, res, next) => {
         console.log(req.files)
+        console.log(req.body)
         const s3 = new aws.S3
         // S3設定
         let params = {
@@ -184,15 +185,28 @@ router.post("/confirm-and-db-insert",
                 })
 
                 // SQL
-                const sql = "insert into shop_menu(shop_id,menu_img,menu_name,price,description) value((select max(id) from shop where owner_id = ?),?,?,?,?)"
-                connection.query(sql, [user_id, params.Key, req.body.menu_name[loop_index], req.body.menu_price[loop_index], req.body.menu_description[loop_index]], (err) => {
-                    if (err) {
-                        console.log(err)
-                        for_each_end_flag = true
-                        return
-                    }
-                    img_index += 1
-                })
+                if(img_count===1) {
+                    const sql = "insert into shop_menu(shop_id,menu_img,menu_name,price,description) value((select max(id) from shop where owner_id = ?),?,?,?,?)"
+                    connection.query(sql, [user_id, params.Key, req.body.menu_name, req.body.menu_price, req.body.menu_description], (err) => {
+                        if (err) {
+                            console.log(err)
+                            for_each_end_flag = true
+                            return
+                        }
+                    })
+                    for_each_end_flag = true
+                }
+                else{
+                    const sql = "insert into shop_menu(shop_id,menu_img,menu_name,price,description) value((select max(id) from shop where owner_id = ?),?,?,?,?)"
+                    connection.query(sql, [user_id, params.Key, req.body.menu_name[loop_index], req.body.menu_price[loop_index], req.body.menu_description[loop_index]], (err) => {
+                        if (err) {
+                            console.log(err)
+                            for_each_end_flag = true
+                            return
+                        }
+                        img_index += 1
+                    })
+                }
             } else {
                 // 画像ない場合
                 const sql = "insert into shop_menu(shop_id,menu_img,menu_name,price,description) value((select max(id) from shop where owner_id = ?),?,?,?,?)"
