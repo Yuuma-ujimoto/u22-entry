@@ -3,6 +3,7 @@ const router = express.Router()
 const connection = require("../../config/mysql")
 const aws = require("aws-sdk")
 
+const s3 = aws.S3
 
 const set_list = require("../../util/set_list")
 router.use((req, res, next) => {
@@ -249,8 +250,8 @@ router.post("/confirm-and-db-insert",
         const shop_img = req.files.shop_img
         if (logo_img) {
             const logo_img_name = logo_img.md5
-            const logo_img_split_data = log_img.name.split(".")
-            const logo_img_ext = file_split_data[file_split_data.length - 1]
+            const logo_img_split_data = logo_img.name.split(".")
+            const logo_img_ext = logo_img_split_data[logo_img_split_data.length - 1]
             params.Key = `${logo_img_name}.${logo_img_ext}`
             params.Body = logo_img.data
             params.ContentType = logo_img.mimetype
@@ -258,11 +259,31 @@ router.post("/confirm-and-db-insert",
             s3.putObject(params, (err, data) => {
                 if (err) {
                     console.log("失敗")
+                    res.render("error/server-error")
                     return
                 }
                 console.log("upload完了")
             })
         }
+
+        if (shop_img) {
+            const shop_img_name = shop_img.md5
+            const shop_img_split_data = shop_img.name.split(".")
+            const shop_img_ext = shop_img_split_data[shop_img_split_data.length - 1]
+            params.Key = `${shop_img_name}.${shop_img_ext}`
+            params.Body = shop_img.data
+            params.ContentType = shop_img.mimetype
+
+            s3.putObject(params, (err, data) => {
+                if (err) {
+                    console.log("失敗")
+                    res.render("error/server-error")
+                    return
+                }
+                console.log("upload完了")
+            })
+        }
+
         next()
     },
     (req, res) => {
