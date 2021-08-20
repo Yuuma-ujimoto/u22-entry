@@ -3,6 +3,10 @@ const router = express.Router()
 const connection = require("../../config/mysql")
 const aws = require("aws-sdk")
 
+const aws_config = require("../../config/aws")
+
+
+aws.config.update(aws_config)
 
 const set_list = require("../../util/set_list")
 router.use((req, res, next) => {
@@ -119,7 +123,7 @@ router.post("/confirm-and-db-insert",
         const s3 = new aws.S3()
         // S3設定
         let params = {
-            Bucket: "bucket-name",
+            Bucket: "crea-test-bucket",
             Key: null,
             Body: null,
             ContentType: null
@@ -148,7 +152,10 @@ router.post("/confirm-and-db-insert",
         let file_split_data // 拡張子取得用にファイル名を分割した値
         let loop_index = 0 //　ループ回数記録
         let img_index = 0　// 画像処理回数記録
+        // ForEachを終了させるフラグ
         let for_each_end_flag = false
+        // エラー発生したかを確認するフラグ
+        let for_each_error_flag = false
         let statement
         //******************************************************************************************************************
         // 画像登録処理ループ
@@ -166,14 +173,14 @@ router.post("/confirm-and-db-insert",
                     file_name = img.md5
                     file_split_data = img.name.split(".")
                     file_ext = file_split_data[file_split_data.length - 1]
-                    params.Key = `${file_name}.${file_ext}`
+                    params.Key = `u22/${file_name}.${file_ext}`
                     params.Body = img.data
                     params.ContentType = img.mimetype
                 } else {
                     file_name = img[img_index].md5
                     file_split_data = img[img_index].name.split(".")
                     file_ext = file_split_data[file_split_data.length - 1]
-                    params.Key = `${file_name}.${file_ext}`
+                    params.Key = `u22/${file_name}.${file_ext}`
                     params.Body = img[img_index].data
                     params.ContentType = img[img_index].mimetype
                 }
@@ -193,6 +200,7 @@ router.post("/confirm-and-db-insert",
                     connection.query(sql, [user_id, params.Key, req.body.menu_name, req.body.menu_price, req.body.menu_description], (err) => {
                         if (err) {
                             console.log(err)
+                            for_each_error_flag　= true
                             for_each_end_flag = true
                             return
                         }
@@ -204,6 +212,8 @@ router.post("/confirm-and-db-insert",
                     connection.query(sql, [user_id, params.Key, req.body.menu_name[loop_index], req.body.menu_price[loop_index], req.body.menu_description[loop_index]], (err) => {
                         if (err) {
                             console.log(err)
+                            for_each_error_flag　= true
+
                             for_each_end_flag = true
                             return
                         }
@@ -217,6 +227,7 @@ router.post("/confirm-and-db-insert",
                     if (err) {
                         console.log(err)
                         for_each_end_flag = true
+                        for_each_error_flag　= true
                     }
                 })
                 if (for_each_end_flag) {
@@ -226,7 +237,7 @@ router.post("/confirm-and-db-insert",
             loop_index += 1
         })
 
-        if (for_each_end_flag) {
+        if(for_each_error_flag){
             res.render("error/server-error")
             return
         }
@@ -248,6 +259,7 @@ router.post("/confirm-and-db-insert",
                     }
                 })
             if (db_insert_err_flag) {
+                console.log("256行目辺り")
                 res.render("error/server-error")
                 return
             }
@@ -259,7 +271,7 @@ router.post("/confirm-and-db-insert",
         // 現在編集中
         // ロゴとかの画像を保存する
         let params = {
-            Bucket: "bucket-name",
+            Bucket: "crea-test-bucket",
             Key: null,
             Body: null,
             ContentType: null
@@ -271,12 +283,13 @@ router.post("/confirm-and-db-insert",
             const logo_img_name = logo_img.md5
             const logo_img_split_data = logo_img.name.split(".")
             const logo_img_ext = logo_img_split_data[logo_img_split_data.length - 1]
-            params.Key = `${logo_img_name}.${logo_img_ext}`
+            params.Key = `u22/${logo_img_name}.${logo_img_ext}`
             params.Body = logo_img.data
             params.ContentType = logo_img.mimetype
 
             s3.putObject(params, (err, data) => {
                 if (err) {
+                    console.log("285辺り")
                     console.log("失敗")
                     res.render("error/server-error")
                     return
@@ -289,7 +302,7 @@ router.post("/confirm-and-db-insert",
             const shop_img_name = shop_img.md5
             const shop_img_split_data = shop_img.name.split(".")
             const shop_img_ext = shop_img_split_data[shop_img_split_data.length - 1]
-            params.Key = `${shop_img_name}.${shop_img_ext}`
+            params.Key = `u22/${shop_img_name}.${shop_img_ext}`
             params.Body = shop_img.data
             params.ContentType = shop_img.mimetype
 
