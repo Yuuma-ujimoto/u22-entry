@@ -3,7 +3,6 @@ const router = express.Router()
 const connection = require("../../config/mysql")
 const aws = require("aws-sdk")
 
-const s3 = aws.S3
 
 const set_list = require("../../util/set_list")
 router.use((req, res, next) => {
@@ -17,7 +16,7 @@ router.use((req, res, next) => {
 // 作成フォーム
 router.get("/",
     (req, res, next) => {
-        res.render("create-page/form")
+        res.render("create-page/bd-form")
     })
 
 // DBに仮登録
@@ -117,7 +116,7 @@ router.post("/confirm-and-db-insert",
     (req, res, next) => {
         console.log(req.files)
         console.log(req.body)
-        const s3 = new aws.S3
+        const s3 = new aws.S3()
         // S3設定
         let params = {
             Bucket: "bucket-name",
@@ -128,7 +127,10 @@ router.post("/confirm-and-db-insert",
         //******************************************************************************************************************
         // 送信データ取得
         const user_id = req.session.user_id
-        const img = req.files.menu_img
+        let img = null
+        if(req.files){
+             img = req.files.menu_img
+        }
         const check_img_data = req.body.check_img_data
         const img_count = parseInt(req.body.img_count)
         const menu_name_list = set_list(req.body.menu_name)
@@ -179,6 +181,7 @@ router.post("/confirm-and-db-insert",
                 s3.putObject(params, (err, data) => {
                     if (err) {
                         console.log("失敗")
+                        console.log(err)
                         return
                     }
                     console.log("upload完了")
@@ -251,6 +254,8 @@ router.post("/confirm-and-db-insert",
         }
         next()
     }, (req, res, next) => {
+        const s3 = new aws.S3()
+
         // 現在編集中
         // ロゴとかの画像を保存する
         let params = {
@@ -291,6 +296,7 @@ router.post("/confirm-and-db-insert",
             s3.putObject(params, (err, data) => {
                 if (err) {
                     console.log("失敗")
+                    console.log(err)
                     res.render("error/server-error")
                     return
                 }
