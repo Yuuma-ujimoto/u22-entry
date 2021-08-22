@@ -70,7 +70,7 @@ router.post("/confirm-and-db-insert",
             template_type
         ]
 
-        const sql = "insert into shop(shop_name,shop_genre,owner_id,postal_code,prefectures,municipality,address,station,open_time,close_time,mail_address,phone_number,template_type) values(?,?,?,?,?,?,?,?,?,?,?,?,?)"
+        const sql = "insert into shop(shop_name,shop_genre,owner_id,postal_code,prefectures,municipality,address,station,open_time,close_time,mail_address,phone_number,template_type,shop_status) values(?,?,?,?,?,?,?,?,?,?,?,?,?,'fin')"
         connection.query(sql, statement, err => {
             if (err) {
                 console.log("err1")
@@ -137,9 +137,9 @@ router.post("/confirm-and-db-insert",
         }
         const check_img_data = req.body.check_img_data
         const img_count = parseInt(req.body.img_count)
-        const menu_name_list = set_list(req.body.menu_name)
-        const menu_price_list = set_list(req.body.menu_price)
-        const menu_description_list = set_list(req.body.menu_description)
+        // const menu_name_list = set_list(req.body.menu_name)
+        // const menu_price_list = set_list(req.body.price)
+        // const menu_description_list = set_list(req.body.menu_description)
 
         //******************************************************************************************************************
 
@@ -197,7 +197,7 @@ router.post("/confirm-and-db-insert",
                 // SQL
                 if(img_count===1) {
                     const sql = "insert into shop_menu(shop_id,menu_img,menu_name,price,description) value((select max(id) from shop where owner_id = ?),?,?,?,?)"
-                    connection.query(sql, [user_id, params.Key, req.body.menu_name, req.body.menu_price, req.body.menu_description], (err) => {
+                    connection.query(sql, [user_id, params.Key, req.body.menu_name, req.body.price, req.body.menu_description], (err) => {
                         if (err) {
                             console.log(err)
                             for_each_error_flag　= true
@@ -208,11 +208,13 @@ router.post("/confirm-and-db-insert",
                     for_each_end_flag = true
                 }
                 else{
+                    console.log(loop_index)
+                    console.log(req.body.menu_name,req.body.menu_price,req.body.menu_description)
                     const sql = "insert into shop_menu(shop_id,menu_img,menu_name,price,description) value((select max(id) from shop where owner_id = ?),?,?,?,?)"
-                    connection.query(sql, [user_id, params.Key, req.body.menu_name[loop_index], req.body.menu_price[loop_index], req.body.menu_description[loop_index]], (err) => {
+                    connection.query(sql, [user_id, params.Key, req.body.menu_name[loop_index], req.body.price[loop_index], req.body.menu_description[loop_index]], (err) => {
                         if (err) {
                             console.log(err)
-                            for_each_error_flag　= true
+                            for_each_error_flag = true
 
                             for_each_end_flag = true
                             return
@@ -223,7 +225,7 @@ router.post("/confirm-and-db-insert",
             } else {
                 // 画像ない場合
                 const sql = "insert into shop_menu(shop_id,menu_img,menu_name,price,description) value((select max(id) from shop where owner_id = ?),?,?,?,?)"
-                connection.query(sql, [user_id, null, req.body.menu_name[loop_index], req.body.menu_price[loop_index], req.body.menu_description[loop_index]], (err) => {
+                connection.query(sql, [user_id, null, req.body.menu_name[loop_index], req.body.price[loop_index], req.body.menu_description[loop_index]], (err) => {
                     if (err) {
                         console.log(err)
                         for_each_end_flag = true
@@ -320,22 +322,15 @@ router.post("/confirm-and-db-insert",
         next()
     },
     (req, res) => {
-        const sql = "select id from shop where update_at = (select max(update_at) from shop where owner_id = ? and soft_delete = 0) "
-        connection.query(sql, [req.session.user_id], (err, result) => {
-            if (err) {
-                console.log(err)
-                res.render("error/server-error")
-                return
-            }
-            let id = result[0].id
-            res.render("preview-and-confirm2", {id: id})
-        })
+
+             res.redirect("/create/result")
+
     })
 
 router.post("/result", (req, res) => {
-    const id = req.body.id
-    const sql = "update shop set status = 'fin' where id = ?"
-    connection.query(sql, [id], err => {
+
+    const sql = "select id from shop where updated_at = (select max(updated_at) from shop where owner_id = ? and soft_delete = 0) "
+    connection.query(sql, [req.session.user_id], (err, result) => {
         if (err) {
             console.log(err)
             res.render("error/server-error")

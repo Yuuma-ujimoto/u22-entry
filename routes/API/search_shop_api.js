@@ -11,9 +11,10 @@ router.post("/all-shop",
         //　除外する件数を表示
         //
         const offset = (page -1) * 10
-        const sql = "select * from shop where soft_delete = 0 and shop_status = 'fin' limit = 10 offset = ?;" +
-            "select count(*) from shop where soft_delete = 0 and shop_status = 'fin' limit = 10 offset = ?"
-        connection.query(sql, [offset], (err, result) => {
+        console.log(offset)
+        const sql = "select * from shop where soft_delete = 0 and shop_status = 'fin' limit  10 offset  ? ; " +
+                    "select count(*) from shop where soft_delete = 0 and shop_status = 'fin' limit  10 offset  ?"
+        connection.query(sql, [offset,offset], (err, result) => {
             if (err) {
                 console.log(err)
                 res.json({error: true})

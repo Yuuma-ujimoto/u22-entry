@@ -10,9 +10,15 @@
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src="/search/js/search.js"></script>
     <script src="https://unpkg.com/scrollreveal"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+
 </head>
 <body>
-<div class="wrap">
+<div id="app" class="wrap">
+    {{test}}
     <!-- ヘッダー -->
     <header class="cb-header">
         <div class="header_rogo">
@@ -229,9 +235,10 @@
     </div>
 
     <!-- お店一覧 -->
+
     <div class="restaurant_table" id="result">
-        <div class="restaurant">
-            <a href="#">
+        <div class="restaurant" v-for="result in result_data" v-bind:key="result.id">
+            <a v-bind:href="'/shop/'+result.id">
                 <!-- イメージ画像 -->
                 <div class="restaurant_top">
                     <img src="/search/images/sushi.jpg" alt="">
@@ -239,77 +246,16 @@
                 <!-- お店の名前とか -->
                 <div class="restaurant_botomm">
                     <div class="restaurant_text">
-                        <span class="name">鮨 みやび</span><br>
+                        <span class="name">{{result.shop_name}}</span><br>
                         <div class="restaurant_text2">
-                            <span class="address">東京都港区赤坂1-11-11</span><br>
-                            <span class="category">和食</span>
+                            <span class="address">{{result.prefectures}} {{result.municipality}}{{result.address}}</span><br>
+                            <span class="category">{{result.shop_genre}}</span>
                         </div>
                     </div>
                 </div>
             </a>
         </div>
-        <div class="restaurant">
-            <a href="#">
-                <div class="restaurant_top">
-                    <img src="/search/images/italian.jpg" alt="">
-                </div>
-                <div class="restaurant_botomm">
-                    <div class="restaurant_text">
-                        <span class="name">クレフピッチェリア</span><br>
-                        <div class="restaurant_text2">
-                            <span class="address">神奈川県川崎市中原区市ノ坪123-1</span><br>
-                            <span class="category">イタリアン</span>
-                        </div>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="restaurant">
-            <a href="#">
-                <div class="restaurant_top">
-                    <img src="/search/images/cafe.jpg" alt="">
-                </div>
-                <div class="restaurant_botomm">
-                    <div class="restaurant_text">
-                        <span class="name">cafe ソレイユ</span><br>
-                        <div class="restaurant_text2">
-                            <span class="address">東京都千代田区丸の内1-2-3</span><br>
-                            <span class="category">カフェ・スイーツ</span>
-                        </div>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="restaurant">
-            <a href="#">
-                <div class="restaurant_top">
-                </div>
-                <div class="restaurant_botomm">
-                    <div class="restaurant_text">
-                        <span class="name">お店の名前</span><br>
-                        <div class="restaurant_text2">
-                            <span class="address">お店の住所</span><br>
-                            <span class="category">カテゴリ</span>
-                        </div>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="restaurant">
-            <a href="#">
-                <div class="restaurant_top">
-                </div>
-                <div class="restaurant_botomm">
-                    <div class="restaurant_text">
-                        <span class="name">お店の名前</span><br>
-                        <div class="restaurant_text2">
-                            <span class="address">お店の住所</span><br>
-                            <span class="category">カテゴリ</span>
-                        </div>
-                    </div>
-                </div>
-            </a>
-        </div>
+
     </div>
 
     <!-- ページネーション -->
@@ -328,6 +274,8 @@
     </footer>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="/search/js/bootstrap.min.js"></script>
+    <script src="/ajax-script/search.js"></script>
+
 </div>
 </body>
 </html>
