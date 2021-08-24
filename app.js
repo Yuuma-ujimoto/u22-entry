@@ -9,7 +9,10 @@ const index_router = require('./routes/index');
 const sign_in_router = require("./routes/sign-in")
 const sign_up_router = require("./routes/sign-up")
 const create_shop_router = require("./routes/create/create")
+const shop_router = require("./routes/shop")
 const search_shop_api_router = require("./routes/API/search_shop_api")
+const get_shop_data_api_router = require("./routes/API/get_shop_data")
+
 const app = express();
 
 // view engine setup
@@ -37,7 +40,9 @@ app.use('/', index_router);
 app.use('/create', create_shop_router);
 app.use('/sign-up', sign_up_router);
 app.use('/sign-in', sign_in_router);
+app.use("/shop",shop_router)
 app.use("/api/search",search_shop_api_router)
+app.use("/api/shop",get_shop_data_api_router)
 
 
 

@@ -1,4 +1,31 @@
-<div class="sample1">
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="Boulangerie HALのサイトです。">
+    <title>個別ページ</title>
+    <link rel="stylesheet" href="/shop/css/normalize.css">
+    <link rel="stylesheet" href="/shop/css/style.css">
+    <link rel="stylesheet" href="/shop/css/slimbox.css">
+    <link rel="stylesheet" href="/shop/css/slick.css">
+    <link rel="stylesheet" href="/shop/css/slick-theme.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script type="text/javascript" src="/shop/js/slick.min.js"></script>
+    <script type="text/javascript" src="/shop/js/slideshow.js"></script>
+    <script type="text/javascript" src="/shop/js/slimbox.js"></script>
+    <script type="text/javascript" src="/shop/js/slide.js"></script>
+    <script type="text/javascript" src="/shop/js/scroll.js"></script>
+    <script type="text/javascript" src="/shop/js/header.js"></script>
+    <link rel="shortcut icon" href="/shop/images/bread.png">
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+<div id="app">
+
     <!--ヘッダー-->
     <header>
         <div class="full">
@@ -7,8 +34,8 @@
             <div class="img03"></div>
         </div>
         <div class="logo">
-            <h1 class="s_storename">
-
+            <h1>
+                <img src="/shop/images/logo02.svg" alt="ロゴ" class="logo">
             </h1>
         </div>
         <p class="tate">日常に寄り添った<br>美味しいパンを<br>お届けします。</p>
@@ -36,7 +63,7 @@
         <nav>
             <div class="nav_img">
                 <a href="#">
-                    <img src="images/logo01.svg" alt="">
+                    <img src="/shop/images/logo01.svg" alt="">
                 </a>
             </div>
             <ul>
@@ -53,57 +80,24 @@
 
     </div>
 
+
     <!--メニュー-->
     <div class="menu">
         <div class="h2" id="menu">
             <h2>MENU</h2>
         </div>
         <div class="menu_image fadein">
-            <img src="images/tenpo05.jpg" alt="フランスパン" class="menuimage">
+            <img src="/shop/images/tenpo05.jpg" alt="フランスパン" class="menuimage">
         </div>
         <ul>
 
             <li class="fadein">
-                <a href="images/pain001.jpg" rel="lightbox" title="フワス　ヴェルヴェンヌ">
-                    <img src="images/pain001.jpg" alt="">
-                </a>
+                <a href="/shop/images/pain001.jpg" rel="lightbox" title="フワス　ヴェルヴェンヌ"><img src="images/pain001.jpg"
+                                                                                           alt=""></a>
                 <h3>フワス　ヴェルヴェンヌ</h3>
                 <p>オーベルニュ地方の名産ハーブ「ヴェルヴェンヌ」にオレンジ、<br>レモンを合わせ　香り高いブリオッシュに仕上げています。</p>
             </li>
 
-            <li class="fadein">
-                <a href="images/pain002.jpg" rel="lightbox" title="ローストビーフとフルムダンベールチーズのサンドイッチ"><img
-                            src="images/pain002.jpg" alt=""></a>
-                <h3>ローストビーフとフルムダンベールチーズの<br>サンドイッチ</h3>
-                <p>名産フルムダンベールチーズを使った濃厚でクリーミーなソースに<br>ローストビーフを合わせたサンドイッチです。<br>林檎を添えて爽やかに仕上げています。</p>
-            </li>
-
-            <li class="fadein">
-                <a href="images/pain003.jpg" rel="lightbox" title="ソーセージとレンズ豆のタルティーヌ"><img src="images/pain003.jpg"
-                                                                                           alt=""></a>
-                <h3>ソーセージとレンズ豆のタルティーヌ</h3>
-                <p>レンズ豆と相性の良い、ソーセージとマッシュポテトをのせた<br>ボリューム満点のタルティーヌです。</p>
-            </li>
-
-            <li class="fadein">
-                <a href="images/pain004.jpg" rel="lightbox" title="塩豚とルピュイ産レンズ豆煮込みのパイ"><img src="images/pain004.jpg"
-                                                                                            alt=""></a>
-                <h3>塩豚とルピュイ産レンズ豆煮込みのパイ</h3>
-                <p>オーベルニュ地方ルピュイ名産のレンズ豆を塩豚・ベーコン・香味野菜と煮込む郷土料理のパイです。<br>塩豚の旨みを吸収したレンズ豆をパイで包んで焼き上げています。</p>
-            </li>
-
-            <li class="fadein">
-                <a href="images/pain005.jpg" rel="lightbox" title="ケークサレ"><img src="images/pain005.jpg" alt=""></a>
-                <h3>ケークサレ</h3>
-                <p>昔からある郷土料理です。スイスチャード（葉野菜)を生地に<br>練り込みベーコンとプルーンを加えた甘塩っぱいケークサレです。</p>
-            </li>
-
-            <li class="fadein">
-                <a href="images/pain006.jpg" rel="lightbox" title="郷土料理「トリュファード」のクロワッサン"><img src="images/pain006.jpg"
-                                                                                              alt=""></a>
-                <h3>郷土料理「トリュファード」のクロワッサン</h3>
-                <p>ジャガイモ、玉ねぎ、スモークベーコンを名産トムフレッシュチーズと炒める郷土料理「トリュファード」をクロワッサン生地に合わせて<br>香ばしく仕上げています。</p>
-            </li>
         </ul>
     </div>
 
@@ -145,16 +139,14 @@
 
 
             <h4>Boulangerie HAL</h4>
-            <p class="address_p">住所：<span class="s_addressnum"></span><span class="s_address"></span><br>
-                電話：<span class="s_tel"></span><br>
-                メールアドレス：<span class="s_mail"></span><br>
+            <p class="address_p">住所：<span class="adddress">{{shop_address}}</span><br>
+                電話：<span class="tel">{{phone_number}}</span><br>
             </p>
             <p>
-                <span class="s_eki"></span>
-                <br>
+                最寄り駅 : {{station}}
             </p>
             <p>
-                営業時間：<span class="s_time"></span><br>
+                営業時間：10:00～20:00<br>
             </p>
             <p>定休日：</p>
 
@@ -171,7 +163,7 @@
         <div class="top">
             <a href="#" class="top"><img src="images/top.png" alt="矢印"><br>TOP</a>
         </div>
-        <p class="small">copyright Boulangerie HAL</p>
+        <p class="small">copyright {{shop_name}}</p>
         <div class="sns">
             <a href="#">
                 <img src="images/twitter.svg" alt="twitter">
@@ -181,5 +173,10 @@
             </a>
         </div>
     </footer>
-
 </div>
+<input type="hidden" value="<%- shop_id %>" id="shop_id">
+
+<script src="/vue-script/shop.js"></script>
+</body>
+
+</html>
