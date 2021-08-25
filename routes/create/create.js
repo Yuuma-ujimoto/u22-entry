@@ -336,7 +336,7 @@ router.post("/result", (req, res) => {
             res.render("error/server-error")
             return
         }
-        res.render("result")
+        res.render("create-page/result")
     })
 })
 
