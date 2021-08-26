@@ -11,7 +11,7 @@ aws.config.update(aws_config)
 const set_list = require("../../util/set_list")
 router.use((req, res, next) => {
     if (!req.session.user_id) {
-        res.render("error/client-error")
+        res.render("error/login-error")
         return
     }
     next()
@@ -87,6 +87,7 @@ router.post("/confirm-and-db-insert",
         if (!day_off_list) {
             console.log("定休日なし")
             next()
+            return
         }
         const sql = "insert into shop_day_off(day_off,shop_id) values(?,(select max(id) from shop where owner_id = ?))"
         // 定休日ひとつだけ
@@ -114,6 +115,7 @@ router.post("/confirm-and-db-insert",
                 })
             })
             next()
+            return
         }
     },
     // メニュー登録
@@ -327,7 +329,7 @@ router.post("/confirm-and-db-insert",
 
     })
 
-router.post("/result", (req, res) => {
+router.get("/result", (req, res) => {
 
     const sql = "select id from shop where updated_at = (select max(updated_at) from shop where owner_id = ? and soft_delete = 0) "
     connection.query(sql, [req.session.user_id], (err, result) => {
