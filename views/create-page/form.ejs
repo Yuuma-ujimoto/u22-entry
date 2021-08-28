@@ -2,483 +2,305 @@
 <html lang="ja">
 
 <head>
-  <meta charset="utf-8">
-  <title>フォーム作成</title>
+    <meta charset="utf-8">
+    <title>フォーム作成</title>
 
-  <!-- 住所検索 -->
-  <link rel="stylesheet" href="/create/css/create-style.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://ajaxzip3.github.io/ajaxzip3.js" charset="UTF-8"></script>
-  <script type="text/javascript" src="/create/js/address.js"></script>
-  <script type="text/javascript" src="/create/js/set_data.js"></script>
+
+     <link rel="stylesheet" href="/css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://ajaxzip3.github.io/ajaxzip3.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="/js/address.js"></script>
+
+<!--    <link rel="stylesheet" href="css/style.css">-->
+<!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
+<!--    <script src="https://ajaxzip3.github.io/ajaxzip3.js" charset="UTF-8"></script>-->
+<!--    <script type="text/javascript" src="js/address.js"></script>-->
+<!--    <script type="text/javascript" src="js/set_data.js.js"></script>-->
 </head>
 
 <body>
 <div class="top">
-  <h1>お店の内容を<br><span class="hbr">登録してください</span></h1>
-  <a href="/">
-    <img src="/create/images/logo.png" alt="ロゴ" class="logo">
-  </a>
+    <h1>お店の内容を<br><span class="hbr">登録してください</span></h1>
+    <a href="#">
+        <img src="images/logo.png" alt="ロゴ" class="logo">
+    </a>
 
-  <img src="/create/images/girl.png" alt="女のコ" class="girl">
+    <img src="images/girl.png" alt="女のコ" class="girl">
 
 </div>
 
 <div class="wrap">
 
 
-  <div class="form_wrap">
-    <form id="form" class="" action="/" method="post" name="webmakeform" onsubmit="return check();" enctype="multipart/form-data">
+    <div class="form_wrap">
+        <form class="" enctype="multipart/form-data" id="form" action="/create/confirm-and-db-insert" method="post"
+              name="webmakeform" onsubmit="return check();">
 
-      <div class="input">
-        <label for="storename">店名<span class="require">必須</span></label>
-        <br>
-        <input type="text" name="shop_name" value="" id="storename" required>
-      </div>
-
-      <div class="input">
-        <label for="">カテゴリ<span class="require">必須</span></label>
-        <div class="category_wrap">
-          <div class="category1">
-            <input type="radio" name="category" value="和食" id="category_id_1">
-            <label for="category_id_1">和食</label><br>
-            <input type="radio" id="category_id_2" value="洋食" name="category">
-            <label for="category_id_2">洋食</label><br>
-            <input type="radio" id="category_id_3" value="中華" name="category">
-            <label for="category_id_3" class="short">中華</label><br>
-            <input type="radio" id="category_id_4" value="イタリアン" name="category">
-            <label for="category_id_4">イタリアン</label><br>
-          </div>
-          <br>
-          <div class="category2">
-            <input type="radio" id="category_id_5" value="居酒屋" name="category">
-            <label for="category_id_5">居酒屋</label><br>
-            <input type="radio" id="category_id_6" value="麺類" name="category">
-            <label for="category_id_6">麺類</label><br>
-            <input type="radio" id="category_id_7" value="カフェ・スイーツ" name="category">
-            <label for="category_id_7" class="short">カフェ・スイーツ</label><br>
-            <input type="radio" id="category_id_8" value="その他" name="category">
-            <label for="category_id_8">その他</label><br>
-          </div>
-        </div>
-
-      </div>
-
-
-      <div class="input">
-        <label for="addressnum">郵便番号<span class="require">必須</span></label> <br>
-        <input type="number" name="postal_code" maxlength="8" value="" placeholder="" id="addressnum" required>
-        <button type="button" class="js-button" href="#">住所検索</button>
-      </div>
-
-      <div class="input">
-        <label for="prefecture">都道府県<span class="require">必須</span></label> <br>
-        <select name="address_1" id="prefecture">
-          <option disabled selected>選択してください</option>
-          <optgroup label="北海道・東北">
-            <option value="北海道">北海道</option>
-            <option value="青森県">青森県</option>
-            <option value="秋田県">秋田県</option>
-            <option value="岩手県">岩手県</option>
-            <option value="山形県">山形県</option>
-            <option value="宮城県">宮城県</option>
-            <option value="福島県">福島県</option>
-          </optgroup>
-          <optgroup label="甲信越・北陸">
-            <option value="山梨県">山梨県</option>
-            <option value="長野県">長野県</option>
-            <option value="新潟県">新潟県</option>
-            <option value="富山県">富山県</option>
-            <option value="石川県">石川県</option>
-            <option value="福井県">福井県</option>
-          </optgroup>
-          <optgroup label="関東">
-            <option value="茨城県">茨城県</option>
-            <option value="栃木県">栃木県</option>
-            <option value="群馬県">群馬県</option>
-            <option value="埼玉県">埼玉県</option>
-            <option value="千葉県">千葉県</option>
-            <option value="東京都">東京都</option>
-            <option value="神奈川県">神奈川県</option>
-          </optgroup>
-          <optgroup label="東海">
-            <option value="愛知県">愛知県</option>
-            <option value="静岡県">静岡県</option>
-            <option value="岐阜県">岐阜県</option>
-            <option value="三重県">三重県</option>
-          </optgroup>
-          <optgroup label="関西">
-            <option value="大阪府">大阪府</option>
-            <option value="兵庫県">兵庫県</option>
-            <option value="京都府">京都府</option>
-            <option value="滋賀県">滋賀県</option>
-            <option value="奈良県">奈良県</option>
-            <option value="和歌山県">和歌山県</option>
-          </optgroup>
-          <optgroup label="中国">
-            <option value="岡山県">岡山県</option>
-            <option value="広島県">広島県</option>
-            <option value="鳥取県">鳥取県</option>
-            <option value="島根県">島根県</option>
-            <option value="山口県">山口県</option>
-          </optgroup>
-          <optgroup label="四国">
-            <option value="徳島県">徳島県</option>
-            <option value="香川県">香川県</option>
-            <option value="愛媛県">愛媛県</option>
-            <option value="高知県">高知県</option>
-          </optgroup>
-          <optgroup label="九州・沖縄">
-            <option value="福岡県">福岡県</option>
-            <option value="佐賀県">佐賀県</option>
-            <option value="長崎県">長崎県</option>
-            <option value="熊本県">熊本県</option>
-            <option value="大分県">大分県</option>
-            <option value="宮崎県">宮崎県</option>
-            <option value="鹿児島県">鹿児島県</option>
-            <option value="沖縄県">沖縄県</option>
-          </optgroup>
-        </select>
-      </div>
-
-      <div class="input">
-        <label for="address2">市区町村<span class="require">必須</span></label> <br>
-        <input type="text" name="address_2" size="60" placeholder="" id="address2" required>
-      </div>
-
-      <div class="input">
-        <label for="address3">番地・建物名<span class="require">必須</span></label> <br>
-        <input type="text" name="address_3" value="" placeholder="" id="address3" required>
-      </div>
-
-      <div class="input">
-        <label for="station_input">最寄り駅<span class="require">必須</span></label> <br>
-        <input type="text" name="station" value="" placeholder="" id="station_input" required>
-      </div>
-
-      <div class="input">
-
-        <label for="">営業時間<span class="require">必須</span></label> <br>
-        <div class="yoko"><input type="time" name="opening_hours" value="" placeholder="" id="opentime" required>
-          <div class="kara_wrap">
-            <p class="kara">～</p>
-          </div><input type="time" name="closing_hours" value="" placeholder="" id="closetime" required>
-        </div>
-      </div>
-
-      <div class="input">
-        <label for="">定休日(複数選択可)</label>
-        <div class="week" id="week_box">
-          <div class="category1">
-            <input type="checkbox" name="regular_day_off" value="月曜" id="day_off_monday">
-            <label for="day_off_monday">月曜</label><br>
-
-            <input type="checkbox" name="regular_day_off" value="火曜">
-            <label for="day_off_tuesday">火曜</label><br>
-
-            <input type="checkbox" name="regular_day_off" value="水曜">
-            <label for="day_off_wednesday">水曜</label><br>
-
-            <input type="checkbox" name="regular_day_off" value="木曜">
-            <label for="day_off_thursday">木曜</label><br>
-          </div>
-          <div class="category2">
-            <input type="checkbox" name="regular_day_off" value="金曜">
-            <label for="day_off_friday">金曜</label><br>
-
-            <input type="checkbox" name="regular_day_off" value="土曜">
-            <label for="day_off_saturday">土曜</label><br>
-
-            <input type="checkbox" name="regular_day_off" value="日曜">
-            <label for="day_off_sunday">日曜</label><br>
-
-            <input type="checkbox" name="regular_day_off" value="祝日">
-            <label for="day_off_holiday">祝日</label><br>
-          </div>
-        </div>
-      </div>
-
-      <div class="input">
-        <label for="">その他の定休日</label> <br>
-        <input type="text" name="other_regular_day_off" value="" placeholder="" id="other_holiday">
-      </div>
-
-      <div class="input">
-        <label for="mail_address">メールアドレス</label> <br>
-        <input type="email" name="mail_address" value="" id="mail_address" placeholder="">
-      </div>
-
-      <div class="input">
-        <label for="phone_number">電話番号</label> <br>
-        <input type="tel" name="phone_number" value="" placeholder="" id="phone_number" maxlength="17">
-      </div>
-
-      <div class="snswrap">
-        <div class="sns_box" id="sns">
-          <div class="detail">
             <div class="input">
-              <!-- 選択されたurlをうつテキストのフォームを作成するjsを作る -->
-              <label for="sns_category">SNS</label> <br>
-              <select id="sns_category" name="sns_category">
-                <option value="">選択ください</option>
-                <option value="twitter">twitter</option>
-                <option value="instagram">instagram</option>
-                <option value="facebook">facebook</option>
-                <option value="youtube">youtube</option>
-              </select>
-              <button type="button" name="button" class="snsmbtn">-</button>
-            </div>
-            <div class="input">
-              <label for="">SNSのURL</label> <br>
-              <input type="url" name="sns_url" value="">
-            </div>
-            <hr>
-          </div>
-        </div>
-        <button type="button" name="button" class="snspbtn">+</button>
-      </div>
-
-      <div class="menuwrap">
-
-        <div class="menu_box" id="menu">
-          <div class="detail">
-            <div class="input">
-              <label for="">メニュー<span class="require">必須</span></label> <br>
-              <input type="text" name="menu_name" value="" placeholder="" class="menu_title">
-              <button type="button" name="button" class="menumbtn">-</button>
+                <label for="storename">店名<span class="require">必須</span></label>
+                <br>
+                <input type="text" name="shop_name" value="" id="storename" required>
             </div>
 
             <div class="input">
-              <label for="menu_img">メニューの画像</label>
-              <input type="file" name="menu_img" value="" id="menu_img">
+                <label for="">カテゴリ<span class="require">必須</span></label>
+                <div class="category_wrap">
+                    <div class="category1">
+                        <input type="radio" name="category" value="和食" id="category_id_1">
+                        <label for="category_id_1">和食</label><br>
+                        <input type="radio" id="category_id_2" value="洋食" name="category">
+                        <label for="category_id_2">洋食</label><br>
+                        <input type="radio" id="category_id_3" value="中華" name="category">
+                        <label for="category_id_3" class="short">中華</label><br>
+                        <input type="radio" id="category_id_4" value="イタリアン" name="category">
+                        <label for="category_id_4">イタリアン</label><br>
+                    </div>
+                    <br>
+                    <div class="category2">
+                        <input type="radio" id="category_id_5" value="居酒屋" name="category">
+                        <label for="category_id_5">居酒屋</label><br>
+                        <input type="radio" id="category_id_6" value="麺類" name="category">
+                        <label for="category_id_6">麺類</label><br>
+                        <input type="radio" id="category_id_7" value="カフェ・スイーツ" name="category">
+                        <label for="category_id_7" class="short">カフェ・スイーツ</label><br>
+                        <input type="radio" id="category_id_8" value="その他" name="category">
+                        <label for="category_id_8">その他</label><br>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="input">
+                <label for="addressnum">郵便番号<span class="require">必須</span>　(ハイフン不要)</label> <br>
+                <input type="number" name="postal_code" maxlength="8" value="" placeholder="" id="addressnum" required>
+                <button type="button" class="js-button" href="#">住所検索</button>
             </div>
 
             <div class="input">
-              <label for="">値段</label> <br>
-              <input type="number" name="price" value="" placeholder="" maxlength="8">
+                <label for="prefecture">都道府県<span class="require">必須</span></label> <br>
+                <select name="address_1" id="prefecture">
+                    <option disabled selected>選択してください</option>
+                    <optgroup label="北海道・東北">
+                        <option value="北海道">北海道</option>
+                        <option value="青森県">青森県</option>
+                        <option value="秋田県">秋田県</option>
+                        <option value="岩手県">岩手県</option>
+                        <option value="山形県">山形県</option>
+                        <option value="宮城県">宮城県</option>
+                        <option value="福島県">福島県</option>
+                    </optgroup>
+                    <optgroup label="甲信越・北陸">
+                        <option value="山梨県">山梨県</option>
+                        <option value="長野県">長野県</option>
+                        <option value="新潟県">新潟県</option>
+                        <option value="富山県">富山県</option>
+                        <option value="石川県">石川県</option>
+                        <option value="福井県">福井県</option>
+                    </optgroup>
+                    <optgroup label="関東">
+                        <option value="茨城県">茨城県</option>
+                        <option value="栃木県">栃木県</option>
+                        <option value="群馬県">群馬県</option>
+                        <option value="埼玉県">埼玉県</option>
+                        <option value="千葉県">千葉県</option>
+                        <option value="東京都">東京都</option>
+                        <option value="神奈川県">神奈川県</option>
+                    </optgroup>
+                    <optgroup label="東海">
+                        <option value="愛知県">愛知県</option>
+                        <option value="静岡県">静岡県</option>
+                        <option value="岐阜県">岐阜県</option>
+                        <option value="三重県">三重県</option>
+                    </optgroup>
+                    <optgroup label="関西">
+                        <option value="大阪府">大阪府</option>
+                        <option value="兵庫県">兵庫県</option>
+                        <option value="京都府">京都府</option>
+                        <option value="滋賀県">滋賀県</option>
+                        <option value="奈良県">奈良県</option>
+                        <option value="和歌山県">和歌山県</option>
+                    </optgroup>
+                    <optgroup label="中国">
+                        <option value="岡山県">岡山県</option>
+                        <option value="広島県">広島県</option>
+                        <option value="鳥取県">鳥取県</option>
+                        <option value="島根県">島根県</option>
+                        <option value="山口県">山口県</option>
+                    </optgroup>
+                    <optgroup label="四国">
+                        <option value="徳島県">徳島県</option>
+                        <option value="香川県">香川県</option>
+                        <option value="愛媛県">愛媛県</option>
+                        <option value="高知県">高知県</option>
+                    </optgroup>
+                    <optgroup label="九州・沖縄">
+                        <option value="福岡県">福岡県</option>
+                        <option value="佐賀県">佐賀県</option>
+                        <option value="長崎県">長崎県</option>
+                        <option value="熊本県">熊本県</option>
+                        <option value="大分県">大分県</option>
+                        <option value="宮崎県">宮崎県</option>
+                        <option value="鹿児島県">鹿児島県</option>
+                        <option value="沖縄県">沖縄県</option>
+                    </optgroup>
+                </select>
             </div>
 
             <div class="input">
-              <label for="">説明</label> <br>
-              <textarea name="menu_description" id="menu_description" class="ex_box"></textarea>
+                <label for="address2">市区町村<span class="require">必須</span></label> <br>
+                <input type="text" name="address_2" size="60" placeholder="" id="address2" required>
             </div>
-            <hr>
-          </div>
-        </div>
-        <button type="button" name="button" class="menupbtn">+</button>
-      </div>
 
-      <div class="input">
-        <label for="">ロゴの画像</label>
-        <input type="file" name="logo_img" value="" id="">
-      </div>
+            <div class="input">
+                <label for="address3">番地・建物名<span class="require">必須</span></label> <br>
+                <input type="text" name="address_3" value="" placeholder="" id="address3" required>
+            </div>
 
-      <div class="input">
-        <label for="">店内画像</label>
-        <input type="file" name="shop_img" value="" id="">
-      </div>
+            <div class="input">
+                <label for="station_input">最寄り駅<span class="require">必須</span></label> <br>
+                <input type="text" name="station" value="" placeholder="" id="station_input" required>
+            </div>
 
-      <div class="input">
-        <label for="">一言コメント (50文字以内)</label> <br>
-        <textarea name="comment" id="comment_text" class="ex_box"></textarea>
-      </div>
+            <div class="input">
+
+                <label for="">営業時間<span class="require">必須</span></label> <br>
+                <div class="yoko"><input type="time" name="opening_hours" value="" placeholder="" id="opentime"
+                                         required>
+                    <div class="kara_wrap">
+                        <p class="kara">～</p>
+                    </div>
+                    <input type="time" name="closing_hours" value="" placeholder="" id="closetime" required>
+                </div>
+            </div>
+
+            <div class="input">
+                <label for="">定休日(複数選択可)</label>
+                <div class="week" id="week_box">
+                    <div class="category1">
+                        <input type="checkbox" name="regular_day_off" value="月曜" id="day_off_monday">
+                        <label for="day_off_monday">月曜</label><br>
+
+                        <input type="checkbox" name="regular_day_off" value="火曜">
+                        <label for="day_off_tuesday">火曜</label><br>
+
+                        <input type="checkbox" name="regular_day_off" value="水曜">
+                        <label for="day_off_wednesday">水曜</label><br>
+
+                        <input type="checkbox" name="regular_day_off" value="木曜">
+                        <label for="day_off_thursday">木曜</label><br>
+                    </div>
+                    <div class="category2">
+                        <input type="checkbox" name="regular_day_off" value="金曜">
+                        <label for="day_off_friday">金曜</label><br>
+
+                        <input type="checkbox" name="regular_day_off" value="土曜">
+                        <label for="day_off_saturday">土曜</label><br>
+
+                        <input type="checkbox" name="regular_day_off" value="日曜">
+                        <label for="day_off_sunday">日曜</label><br>
+
+                        <input type="checkbox" name="regular_day_off" value="祝日">
+                        <label for="day_off_holiday">祝日</label><br>
+                    </div>
+                </div>
+            </div>
+
+            <div class="input">
+                <label for="">その他の定休日</label> <br>
+                <input type="text" name="other_regular_day_off" value="" placeholder="" id="other_holiday">
+            </div>
+
+            <div class="input">
+                <label for="mail_address">メールアドレス</label> <br>
+                <input type="email" name="mail_address" value="" id="mail_address" placeholder="">
+            </div>
+
+            <div class="input">
+                <label for="phone_number">電話番号</label> <br>
+                <input type="tel" name="phone_number" value="" placeholder="" id="phone_number" maxlength="17">
+            </div>
+
+<!--            <div class="snswrap">-->
+<!--                <div class="sns_box" id="sns">-->
+<!--                    <div class="detail">-->
+<!--                        <div class="input">-->
+<!--                            &lt;!&ndash; 選択されたurlをうつテキストのフォームを作成するjsを作る &ndash;&gt;-->
+<!--                            <label for="sns_category">SNS</label> <br>-->
+<!--                            <select id="sns_category" name="sns_category" class="sns_choice" id="sns_ch">-->
+<!--                                <option value="">選択ください</option>-->
+<!--                                <option value="twitter">twitter</option>-->
+<!--                                <option value="instagram">instagram</option>-->
+<!--                                <option value="facebook">facebook</option>-->
+<!--                                <option value="youtube">youtube</option>-->
+<!--                            </select>-->
+<!--                            <button type="button" name="button" class="snsmbtn">-</button>-->
+<!--                        </div>-->
+<!--                        <div class="input">-->
+<!--                            <label for="">SNSのURL</label> <br>-->
+<!--                            <input type="url" name="sns_url" value="" class="sns_url">-->
+<!--                        </div>-->
+<!--                        <hr>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <button type="button" name="button" class="snspbtn">+</button>-->
+<!--            </div>-->
+
+            <div class="menuwrap">
+
+                <div class="menu_box" id="menu">
+                    <div class="detail">
+                        <div class="input">
+                            <label for="">メニュー<span class="require">必須</span></label> <br>
+                            <input type="text" name="menu_name" value="" placeholder="" class="menu_title">
+                            <button type="button" name="button" class="menumbtn">-</button>
+                        </div>
+
+                        <div class="input">
+                            <label for="menu_img">メニューの画像</label>
+                            <input required type="file" name="menu_img" value="" id="menu_img" class="menu_img"
+                                   accept=".png,.jpeg,.jpg">
+                        </div>
+
+                        <div class="input">
+                            <label for="">値段</label> <br>
+                            <input required type="number" name="price" value="" placeholder="" maxlength="8" class="price"
+                                   min="0" step="10" oninput="this.value=Math.abs(this.value)">
+                        </div>
+
+                        <div class="input">
+                            <label for="">説明</label> <br>
+                            <textarea required name="menu_description" id="menu_description" class="ex_box menu_ex"></textarea>
+                        </div>
+                        <hr>
+                    </div>
+                </div>
+                <button type="button" name="button" class="menupbtn">+</button>
+            </div>
+
+            <div class="input">
+                <label for="">ロゴの画像</label>
+                <input type="file" name="logo_img" value="" id="" accept=".png,.jpeg,.jpg">
+            </div>
+
+            <div class="input">
+                <label for="">店内画像</label>
+                <input type="file" name="shop_img" value="" id="" accept=".png,.jpeg,.jpg">
+            </div>
+
+            <div class="input">
+                <label for="">一言コメント (50文字以内)</label> <br>
+                <textarea name="comment" id="comment_text" class="ex_box"></textarea>
+            </div>
 
 
-      <div class="input submitbtn">
-        <input type="hidden" name="check_img_data" id="test">
-        <input type="hidden" name="img_count" id="count">
-        <input type="button" name="" class="reset" onclick="reset()" value="リセット">
-        <input type="submit" name="" class="submit" value="決定" formaction="/create/confirm-and-db-insert">
-      </div>
+            <div class="input submitbtn">
+                <input type="button" name="" class="reset" onclick="reset()" value="リセット">
+                <input type="submit" name="" class="submit" value="決定">
+            </div>
 
-    </form>
-  </div>
+        </form>
+    </div>
 </div>
-
-
 </body>
-<script type="text/javascript" charset="UTF-8">
-  function reset() {
-    document.webmakeform.reset();
-  }
-  var snscnt = 1;
-  var menucnt = 1;
-  $('.snspbtn').on('click', function () {
-    snscnt++;
-    if (snscnt == 5) {
-      snscnt--;
-    } else {
-      $("#sns"). //#each_rootを取得
-              clone(true). //上で取得した中身をコピー
-              insertBefore(".snspbtn"); //#rootsに追加
-
-    }
-  })
-
-  $('.menupbtn').on('click', function () {
-    menucnt++;
-    $("#menu"). //#each_rootを取得
-            clone(true). //上で取得した中身をコピー
-            insertBefore(".menupbtn"); //#rootsに追加
-  })
-
-
-  $(".snsmbtn").on("click", function () {
-    var cnt = $(".snswrap").find('.detail').length;
-    var snsdel = $(this).parent().parent()
-    if (cnt > 1) {
-      snsdel.remove();
-      snscnt--;
-    } else {
-
-    }
-  });
-
-  $(".menumbtn").on("click", function () {
-    var cnt = $(".menuwrap").find('.detail').length;
-    var menudel = $(this).parent().parent()
-    if (cnt > 1) {
-      menudel.remove();
-    } else {
-
-    }
-  });
-
-  $(".submit").on('click', function () {
-    console.log("くりっくされた");
-    var storename = document.getElementById("storename").value;
-    var addressnum = document.getElementById("addressnum").value;
-    var prefecture = $('#prefecture').val();
-    var address2 = document.getElementById("address2").value;
-    var address3 = document.getElementById("address3").value;
-    var eki = document.getElementById("station_input").value;
-    var opentime = $('#opentime').val();
-    var closetime = $('#closetime').val();
-    var mail = document.getElementById("mail_address").value;
-    var tel = document.getElementById("phone_number").value;
-    var comment = document.getElementById("comment_text").value;
-    var map_img = document.getElementById("map");
-    var other_holi = document.getElementById("other_holiday").value;
-
-
-
-    //店舗名取得
-    if (storename == "") {
-      console.log("店舗名記入なし");
-    } else {
-      console.log(storename);
-      $(".s_storename").text(storename);
-    }
-
-    //郵便番号取得
-    if (addressnum == "") {
-      console.log("郵便番号記入なし");
-    } else {
-      var add1 = addressnum.slice(0, 3);
-      var add2 = addressnum.slice(-4);
-      $(".s_addressnum").text("〒" + add1 + "-" + add2);
-    }
-
-    //県取得
-    if (prefecture == "") {
-      console.log("県記入なし");
-    } else {
-      //市区町村取得
-      if (address2 == "") {
-        console.log("市区町村記入なし");
-      } else {
-        //番地取得
-        if (address3 == "") {
-          console.log("番地記入なし");
-        } else {
-          $(".s_address").text(prefecture + address2 + address3);
-          var map = "https://maps.google.co.jp/maps?output=embed&q=";
-          var maptext = prefecture + address2 + address3;
-          map = map + maptext;
-          console.log(map);
-          map_img.getElementsByTagName("iframe")[0].src = map;
-          console.log(map, map_img);
-        }
-      }
-    }
-
-    //駅取得
-    if (eki == "") {
-      console.log("駅記入なし");
-    } else {
-      $(".s_eki").text(eki);
-    }
-
-    //営業時間取得
-    if (opentime == "" || closetime == "") {
-      console.log("営業時間記入なし");
-    } else {
-      $(".s_time").text(opentime + "~" + closetime);
-    }
-
-    //定休日取得
-
-    var holiday = " ";
-
-    for (var i = 0; i < document.webmakeform.regular_day_off.length; i++) {
-
-      // i番目のチェックボックスがチェックされているかを判定
-      if (document.webmakeform.regular_day_off[i].checked) {
-        holiday = holiday + document.webmakeform.regular_day_off[i].value + "・";
-      }
-    }
-    var holiday1 = holiday.slice(1);
-    var holiday2 = holiday1.slice(0, -1);
-    if (holiday2 == "") {
-      if (other_holi == "") {
-        holiday2 = "なし";
-        $(".s_holiday").text(holiday2);
-      } else {
-        $(".s_holiday").text(other_holi);
-      }
-
-    } else {
-      if (other_holi == "") {
-        $(".s_holiday").text(holiday2);
-      } else {
-        holiday2 = holiday2 + "," + other_holi;
-        $(".s_holiday").text(holiday2);
-      }
-    }
-
-
-    //メールアドレス取得
-    if (mail == "") {
-      console.log("メール記入なし");
-    } else {
-      $(".s_mail").text(mail);
-    }
-
-    //電話番号取得
-    if (tel == "") {
-      console.log("電話番号記入なし");
-    } else {
-      $(".s_tel").text(tel);
-    }
-
-    //コメント取得
-    if (comment == "") {
-      console.log("コメントなし");
-    } else {
-      $(".s_news").text(comment);
-    }
-
-    //メニューhtml作成
-    var menu_cnt = $(".menu_title").length;
-    menu_cnt = menu_cnt - 1;
-    savemenu = $(".s_menu_ul").html();
-    for (var i = 0; i < menu_cnt; i++) {
-      $(".s_menu_ul").append(savemenu);
-    }
-
-
-
-  })
-</script>
-
 </html>

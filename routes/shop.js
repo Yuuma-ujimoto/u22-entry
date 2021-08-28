@@ -5,7 +5,7 @@ const connection = mysql_config
 
 
 router.get("/:id",(req, res) => {
-    res.render("shop/sample1",{shop_id:req.params.id})
+    res.render("shop/sample2",{shop_id:req.params.id})
 })
 
 module.exports = router

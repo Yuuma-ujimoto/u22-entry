@@ -29,7 +29,6 @@ router.post("/query",(req, res, next) => {
     const area = req.body.area
     const category = req.body.category
     const shop_name = req.body.shop_name
-//        area: '北海道', category: '', shop_name: ''
 
     if(!area&&!category&&!shop_name){
         res.redirect("/search/")

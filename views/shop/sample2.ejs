@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="ja">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>{{shop_name}}</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+        }
+        .kari{
+            max-width: 50%;
+        }
+    </style>
+</head>
+<body>
+<article id="app">
+    <header>
+        <h1>店名:{{shop_name}}</h1>
+    </header>
+    <div>
+        <h3>基本情報</h3>
+        <ul>
+            <li>住所
+                <ul>
+                    <li>{{shop_address}}</li>
+                </ul>
+                <ul>
+                    <li>最寄り駅 :  {{station}} </li>
+                </ul>
+            </li>
+        </ul>
+        <ul >
+            <li>ジャンル
+                <ul>
+                    <li>{{shop_genre}}</li>
+                </ul>
+            </li>
+        </ul>
+        <ul>
+            <li>電話番号
+                <ul>
+                    <li>{{phone_number}}</li>
+                </ul>
+            </li>
+        </ul>
+        <ul>
+            <li>メールアドレス
+                <ul>
+                    <li>{{mail_address}}</li>
+                </ul>
+            </li>
+        </ul>
+        <h2>メニュー</h2>
+            <ul>
+                <section v-for="menu in menu_list" v-bind:key="menu.id">
+                    <h2>メニュー名</h2>
+                    <ul v-if="menu.menu_name">
+                        <li>{{menu.menu_name}}</li>
+                    </ul>
+                    <div v-else>
+                        <p>メニュー名未定</p>
+                    </div>
+                    <h3>メニュー画像</h3>
+                    <div v-if="menu.menu_img">
+                        <img v-bind:src="'https://crea-test-bucket.s3.ap-northeast-1.amazonaws.com/'+menu.menu_img" alt="メニュー画像">
+                    </div>
+                    <div v-else>
+                        <img class="kari" src="/index/images/kari.png" alt="kari" >
+                    </div>
+
+                    <h4>値段</h4>
+                    <p>{{menu.price}}円</p>
+                </section>
+            </ul>
+        <h3>定休日</h3>
+
+        <h2>SNS</h2>
+      </div>
+</article>
+<input type="hidden" value="<%- shop_id %>" id="shop_id">
+
+<script src="/vue-script/shop.js"></script>
+
+</body>
+</html>
