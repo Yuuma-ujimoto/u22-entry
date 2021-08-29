@@ -25,13 +25,14 @@ router.post("/all-shop",
     })
 
 
-router.post("/query",(req, res, next) => {
+router.get("/query",(req, res, next) => {
     const area = req.body.area
     const category = req.body.category
     const shop_name = req.body.shop_name
 
     if(!area&&!category&&!shop_name){
-        res.redirect("/search/")
+        res.json({error:true,msg:"情報が不足しています。"})
+        return
     }
 
 

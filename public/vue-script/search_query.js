@@ -12,7 +12,7 @@ const app = new Vue({
         params.append("category",document.getElementById("category_q").value)
         params.append("shop_name",document.getElementById("shop_name_q").value)
 
-        const result = await axios.post("/api/search/query")
+        const result = await axios.post("/api/search/query",params)
         console.log(result.data)
         this.result_data = result.data.result
     }

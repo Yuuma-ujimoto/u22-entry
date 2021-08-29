@@ -8,6 +8,8 @@ const app = new Vue({
         station:null,
         shop_genre:null,
         mail_address:null,
+        open_time:null,
+        close_time:null,
         menu_list:[]
     },
     created: async function () {
@@ -29,6 +31,8 @@ const app = new Vue({
             this.station = shop_data.station
             this.shop_genre = shop_data.shop_genre
             this.mail_address = shop_data.mail_address
+            this.open_time = shop_data.open_time
+            this.close_time = shop_data.close_time
         },
         set_menu_data(menu_data){
             this.menu_list = menu_data
