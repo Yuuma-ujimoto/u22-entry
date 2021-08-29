@@ -5,27 +5,22 @@
     <meta charset="utf-8">
     <title>フォーム作成</title>
 
-
-     <link rel="stylesheet" href="/css/style.css">
+    <!-- 住所検索 -->
+    <link rel="stylesheet" href="/create/css/create-style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://ajaxzip3.github.io/ajaxzip3.js" charset="UTF-8"></script>
-    <script type="text/javascript" src="/js/address.js"></script>
-
-<!--    <link rel="stylesheet" href="css/style.css">-->
-<!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
-<!--    <script src="https://ajaxzip3.github.io/ajaxzip3.js" charset="UTF-8"></script>-->
-<!--    <script type="text/javascript" src="js/address.js"></script>-->
-<!--    <script type="text/javascript" src="js/set_data.js.js"></script>-->
+    <script type="text/javascript" src="/create/js/address.js"></script>
+    <script type="text/javascript" src="/create/js/set_data.js"></script>
 </head>
 
 <body>
 <div class="top">
     <h1>お店の内容を<br><span class="hbr">登録してください</span></h1>
-    <a href="#">
-        <img src="images/logo.png" alt="ロゴ" class="logo">
+    <a href="/">
+        <img src="/create/images/logo.png" alt="ロゴ" class="logo">
     </a>
 
-    <img src="images/girl.png" alt="女のコ" class="girl">
+    <img src="/create/images/girl.png" alt="女のコ" class="girl">
 
 </div>
 
@@ -33,20 +28,19 @@
 
 
     <div class="form_wrap">
-        <form class="" enctype="multipart/form-data" id="form" action="/create/confirm-and-db-insert" method="post"
-              name="webmakeform" onsubmit="return check();">
+        <form id="form" action="/" method="post" name="webmakeform" enctype="multipart/form-data">
 
             <div class="input">
                 <label for="storename">店名<span class="require">必須</span></label>
                 <br>
-                <input type="text" name="shop_name" value="" id="storename" required>
+                <input type="text" name="shop_name" id="storename" required>
             </div>
 
             <div class="input">
-                <label for="">カテゴリ<span class="require">必須</span></label>
+                <label>カテゴリ<span class="require">必須</span></label>
                 <div class="category_wrap">
                     <div class="category1">
-                        <input type="radio" name="category" value="和食" id="category_id_1">
+                        <input type="radio" name="category" value="和食" id="category_id_1" checked>
                         <label for="category_id_1">和食</label><br>
                         <input type="radio" id="category_id_2" value="洋食" name="category">
                         <label for="category_id_2">洋食</label><br>
@@ -72,9 +66,10 @@
 
 
             <div class="input">
-                <label for="addressnum">郵便番号<span class="require">必須</span>　(ハイフン不要)</label> <br>
-                <input type="number" name="postal_code" maxlength="8" value="" placeholder="" id="addressnum" required>
-                <button type="button" class="js-button" href="#">住所検索</button>
+                <label for="addressnum">郵便番号<span class="require">必須</span></label> <br>
+                <input type="number" name="postal_code" maxlength="8" id="addressnum"
+                       required>
+                <button type="button" class="js-button">住所検索</button>
             </div>
 
             <div class="input">
@@ -149,28 +144,28 @@
 
             <div class="input">
                 <label for="address2">市区町村<span class="require">必須</span></label> <br>
-                <input type="text" name="address_2" size="60" placeholder="" id="address2" required>
+                <input type="text" name="address_2" size="60" id="address2" required>
             </div>
 
             <div class="input">
                 <label for="address3">番地・建物名<span class="require">必須</span></label> <br>
-                <input type="text" name="address_3" value="" placeholder="" id="address3" required>
+                <input type="text" name="address_3" id="address3" required>
             </div>
 
             <div class="input">
                 <label for="station_input">最寄り駅<span class="require">必須</span></label> <br>
-                <input type="text" name="station" value="" placeholder="" id="station_input" required>
+                <input type="text" name="station" id="station_input" required>
             </div>
 
             <div class="input">
 
                 <label for="">営業時間<span class="require">必須</span></label> <br>
-                <div class="yoko"><input type="time" name="opening_hours" value="" placeholder="" id="opentime"
+                <div class="yoko"><input type="time" name="opening_hours" id="opentime"
                                          required>
                     <div class="kara_wrap">
                         <p class="kara">～</p>
                     </div>
-                    <input type="time" name="closing_hours" value="" placeholder="" id="closetime" required>
+                    <input type="time" name="closing_hours" id="closetime" required>
                 </div>
             </div>
 
@@ -178,7 +173,7 @@
                 <label for="">定休日(複数選択可)</label>
                 <div class="week" id="week_box">
                     <div class="category1">
-                        <input type="checkbox" name="regular_day_off" value="月曜" id="day_off_monday">
+                        <input type="checkbox" name="regular_day_off" value="月曜" id="day_off_monday" checked>
                         <label for="day_off_monday">月曜</label><br>
 
                         <input type="checkbox" name="regular_day_off" value="火曜">
@@ -207,70 +202,45 @@
             </div>
 
             <div class="input">
-                <label for="">その他の定休日</label> <br>
-                <input type="text" name="other_regular_day_off" value="" placeholder="" id="other_holiday">
+                <label for="other_day_off">その他の定休日</label> <br>
+                <input type="text" name="other_regular_day_off" id="other_day_off">
             </div>
 
             <div class="input">
                 <label for="mail_address">メールアドレス</label> <br>
-                <input type="email" name="mail_address" value="" id="mail_address" placeholder="">
+                <input type="email" name="mail_address" id="mail_address">
             </div>
 
             <div class="input">
                 <label for="phone_number">電話番号</label> <br>
-                <input type="tel" name="phone_number" value="" placeholder="" id="phone_number" maxlength="17">
+                <input type="tel" name="phone_number" id="phone_number"
+                       maxlength="17">
             </div>
 
-<!--            <div class="snswrap">-->
-<!--                <div class="sns_box" id="sns">-->
-<!--                    <div class="detail">-->
-<!--                        <div class="input">-->
-<!--                            &lt;!&ndash; 選択されたurlをうつテキストのフォームを作成するjsを作る &ndash;&gt;-->
-<!--                            <label for="sns_category">SNS</label> <br>-->
-<!--                            <select id="sns_category" name="sns_category" class="sns_choice" id="sns_ch">-->
-<!--                                <option value="">選択ください</option>-->
-<!--                                <option value="twitter">twitter</option>-->
-<!--                                <option value="instagram">instagram</option>-->
-<!--                                <option value="facebook">facebook</option>-->
-<!--                                <option value="youtube">youtube</option>-->
-<!--                            </select>-->
-<!--                            <button type="button" name="button" class="snsmbtn">-</button>-->
-<!--                        </div>-->
-<!--                        <div class="input">-->
-<!--                            <label for="">SNSのURL</label> <br>-->
-<!--                            <input type="url" name="sns_url" value="" class="sns_url">-->
-<!--                        </div>-->
-<!--                        <hr>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <button type="button" name="button" class="snspbtn">+</button>-->
-<!--            </div>-->
 
             <div class="menuwrap">
 
                 <div class="menu_box" id="menu">
                     <div class="detail">
                         <div class="input">
-                            <label for="">メニュー<span class="require">必須</span></label> <br>
-                            <input type="text" name="menu_name" value="" placeholder="" class="menu_title">
+                            <label>メニュー<span class="require">必須</span></label> <br>
+                            <input type="text" name="menu_name" class="menu_title">
                             <button type="button" name="button" class="menumbtn">-</button>
                         </div>
 
                         <div class="input">
                             <label for="menu_img">メニューの画像</label>
-                            <input required type="file" name="menu_img" value="" id="menu_img" class="menu_img"
-                                   accept=".png,.jpeg,.jpg">
+                            <input type="file" name="menu_img" id="menu_img">
                         </div>
 
                         <div class="input">
-                            <label for="">値段</label> <br>
-                            <input required type="number" name="price" value="" placeholder="" maxlength="8" class="price"
-                                   min="0" step="10" oninput="this.value=Math.abs(this.value)">
+                            <label>値段(税込み)</label> <br>
+                            <input type="number" name="price" maxlength="8">
                         </div>
 
                         <div class="input">
-                            <label for="">説明</label> <br>
-                            <textarea required name="menu_description" id="menu_description" class="ex_box menu_ex"></textarea>
+                            <label>説明</label> <br>
+                            <textarea name="menu_description" id="menu_description" class="ex_box">a</textarea>
                         </div>
                         <hr>
                     </div>
@@ -279,28 +249,82 @@
             </div>
 
             <div class="input">
-                <label for="">ロゴの画像</label>
-                <input type="file" name="logo_img" value="" id="" accept=".png,.jpeg,.jpg">
+                <label for="logo_img">ロゴの画像</label>
+                <input type="file" name="logo_img" id="logo_img">
             </div>
 
             <div class="input">
-                <label for="">店内画像</label>
-                <input type="file" name="shop_img" value="" id="" accept=".png,.jpeg,.jpg">
+                <label for="shop_img">店内画像</label>
+                <input type="file" name="shop_img" id="shop_img">
             </div>
 
             <div class="input">
-                <label for="">一言コメント (50文字以内)</label> <br>
+                <label for="comment_text">一言コメント (50文字以内)</label> <br>
                 <textarea name="comment" id="comment_text" class="ex_box"></textarea>
             </div>
 
 
             <div class="input submitbtn">
-                <input type="button" name="" class="reset" onclick="reset()" value="リセット">
-                <input type="submit" name="" class="submit" value="決定">
+                <input type="hidden" name="check_img_data" id="test">
+                <input type="hidden" name="img_count" id="count">
+                <input type="button" class="reset" onclick="reset()" value="リセット">
+                <input type="submit" class="submit" value="決定" formaction="/create/confirm-and-db-insert">
             </div>
 
         </form>
     </div>
 </div>
+
+
 </body>
+<script type="text/javascript" charset="UTF-8">
+    function reset() {
+        document.webmakeform.reset();
+    }
+
+    var snscnt = 1;
+    var menucnt = 1;
+    $('.snspbtn').on('click', function () {
+        snscnt++;
+        if (snscnt == 5) {
+            snscnt--;
+        } else {
+            $("#sns"). //#each_rootを取得
+                clone(true). //上で取得した中身をコピー
+                insertBefore(".snspbtn"); //#rootsに追加
+
+        }
+    })
+
+    $('.menupbtn').on('click', function () {
+        menucnt++;
+        $("#menu"). //#each_rootを取得
+            clone(true). //上で取得した中身をコピー
+            insertBefore(".menupbtn"); //#rootsに追加
+    })
+
+
+    $(".snsmbtn").on("click", function () {
+        var cnt = $(".snswrap").find('.detail').length;
+        var snsdel = $(this).parent().parent()
+        if (cnt > 1) {
+            snsdel.remove();
+            snscnt--;
+        } else {
+
+        }
+    });
+
+    $(".menumbtn").on("click", function () {
+        var cnt = $(".menuwrap").find('.detail').length;
+        var menudel = $(this).parent().parent()
+        if (cnt > 1) {
+            menudel.remove();
+        } else {
+
+        }
+    });
+
+</script>
+
 </html>

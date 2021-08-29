@@ -28,7 +28,7 @@
 
 
     <div class="form_wrap">
-        <form id="form" class="" action="/" method="post" name="webmakeform"  enctype="multipart/form-data">
+        <form id="form" class="" action="/" method="post" name="webmakeform" enctype="multipart/form-data">
 
             <div class="input">
                 <label for="storename">店名<span class="require">必須</span></label>
@@ -67,8 +67,9 @@
 
             <div class="input">
                 <label for="addressnum">郵便番号<span class="require">必須</span></label> <br>
-                <input type="number" name="postal_code" maxlength="8" value="2270055" placeholder="" id="addressnum" required>
-                <button type="button" class="js-button" href="#">住所検索</button>
+                <input type="number" name="postal_code" maxlength="8" value="2270055" placeholder="" id="addressnum"
+                       required>
+                <button type="button" class="js-button">住所検索</button>
             </div>
 
             <div class="input">
@@ -159,10 +160,12 @@
             <div class="input">
 
                 <label for="">営業時間<span class="require">必須</span></label> <br>
-                <div class="yoko"><input type="time" name="opening_hours" value="11:00" placeholder="" id="opentime" required>
+                <div class="yoko"><input type="time" name="opening_hours" value="11:00" placeholder="" id="opentime"
+                                         required>
                     <div class="kara_wrap">
                         <p class="kara">～</p>
-                    </div><input type="time" name="closing_hours" value="22:00" placeholder="" id="closetime" required>
+                    </div>
+                    <input type="time" name="closing_hours" value="22:00" placeholder="" id="closetime" required>
                 </div>
             </div>
 
@@ -171,7 +174,7 @@
                 <div class="week" id="week_box">
                     <div class="category1">
                         <input type="checkbox" name="regular_day_off" value="月曜" id="day_off_monday" checked>
-                        <label for="day_off_monday" >月曜</label><br>
+                        <label for="day_off_monday">月曜</label><br>
 
                         <input type="checkbox" name="regular_day_off" value="火曜">
                         <label for="day_off_tuesday">火曜</label><br>
@@ -210,33 +213,10 @@
 
             <div class="input">
                 <label for="phone_number">電話番号</label> <br>
-                <input type="tel" name="phone_number" value="000-0000-000" placeholder="" id="phone_number" maxlength="17">
+                <input type="tel" name="phone_number" value="000-0000-000" placeholder="" id="phone_number"
+                       maxlength="17">
             </div>
 
-            <div class="snswrap">
-                <div class="sns_box" id="sns">
-                    <div class="detail">
-                        <div class="input">
-                            <!-- 選択されたurlをうつテキストのフォームを作成するjsを作る -->
-                            <label for="sns_category">SNS</label> <br>
-                            <select id="sns_category" name="sns_category">
-                                <option value="">選択ください</option>
-                                <option value="twitter">twitter</option>
-                                <option value="instagram">instagram</option>
-                                <option value="facebook">facebook</option>
-                                <option value="youtube">youtube</option>
-                            </select>
-                            <button type="button" name="button" class="snsmbtn">-</button>
-                        </div>
-                        <div class="input">
-                            <label for="">SNSのURL</label> <br>
-                            <input type="url" name="sns_url" value="">
-                        </div>
-                        <hr>
-                    </div>
-                </div>
-                <button type="button" name="button" class="snspbtn">+</button>
-            </div>
 
             <div class="menuwrap">
 
@@ -301,6 +281,7 @@
     function reset() {
         document.webmakeform.reset();
     }
+
     var snscnt = 1;
     var menucnt = 1;
     $('.snspbtn').on('click', function () {
@@ -344,140 +325,6 @@
         }
     });
 
-    // $(".submit").on('click', function () {
-    //     console.log("くりっくされた");
-    //     var storename = document.getElementById("storename").value;
-    //     var addressnum = document.getElementById("addressnum").value;
-    //     var prefecture = $('#prefecture').val();
-    //     var address2 = document.getElementById("address2").value;
-    //     var address3 = document.getElementById("address3").value;
-    //     var eki = document.getElementById("station_input").value;
-    //     var opentime = $('#opentime').val();
-    //     var closetime = $('#closetime').val();
-    //     var mail = document.getElementById("mail_address").value;
-    //     var tel = document.getElementById("phone_number").value;
-    //     var comment = document.getElementById("comment_text").value;
-    //     var map_img = document.getElementById("map");
-    //     var other_holi = document.getElementById("other_holiday").value;
-    //
-    //
-    //
-    //     //店舗名取得
-    //     if (storename == "") {
-    //         console.log("店舗名記入なし");
-    //     } else {
-    //         console.log(storename);
-    //         $(".s_storename").text(storename);
-    //     }
-    //
-    //     //郵便番号取得
-    //     if (addressnum == "") {
-    //         console.log("郵便番号記入なし");
-    //     } else {
-    //         var add1 = addressnum.slice(0, 3);
-    //         var add2 = addressnum.slice(-4);
-    //         $(".s_addressnum").text("〒" + add1 + "-" + add2);
-    //     }
-    //
-    //     //県取得
-    //     if (prefecture == "") {
-    //         console.log("県記入なし");
-    //     } else {
-    //         //市区町村取得
-    //         if (address2 == "") {
-    //             console.log("市区町村記入なし");
-    //         } else {
-    //             //番地取得
-    //             if (address3 == "") {
-    //                 console.log("番地記入なし");
-    //             } else {
-    //                 $(".s_address").text(prefecture + address2 + address3);
-    //                 var map = "https://maps.google.co.jp/maps?output=embed&q=";
-    //                 var maptext = prefecture + address2 + address3;
-    //                 map = map + maptext;
-    //                 console.log(map);
-    //                 map_img.getElementsByTagName("iframe")[0].src = map;
-    //                 console.log(map, map_img);
-    //             }
-    //         }
-    //     }
-    //
-    //     //駅取得
-    //     if (eki == "") {
-    //         console.log("駅記入なし");
-    //     } else {
-    //         $(".s_eki").text(eki);
-    //     }
-    //
-    //     //営業時間取得
-    //     if (opentime == "" || closetime == "") {
-    //         console.log("営業時間記入なし");
-    //     } else {
-    //         $(".s_time").text(opentime + "~" + closetime);
-    //     }
-    //
-    //     //定休日取得
-    //
-    //     var holiday = " ";
-    //
-    //     for (var i = 0; i < document.webmakeform.regular_day_off.length; i++) {
-    //
-    //         // i番目のチェックボックスがチェックされているかを判定
-    //         if (document.webmakeform.regular_day_off[i].checked) {
-    //             holiday = holiday + document.webmakeform.regular_day_off[i].value + "・";
-    //         }
-    //     }
-    //     var holiday1 = holiday.slice(1);
-    //     var holiday2 = holiday1.slice(0, -1);
-    //     if (holiday2 == "") {
-    //         if (other_holi == "") {
-    //             holiday2 = "なし";
-    //             $(".s_holiday").text(holiday2);
-    //         } else {
-    //             $(".s_holiday").text(other_holi);
-    //         }
-    //
-    //     } else {
-    //         if (other_holi == "") {
-    //             $(".s_holiday").text(holiday2);
-    //         } else {
-    //             holiday2 = holiday2 + "," + other_holi;
-    //             $(".s_holiday").text(holiday2);
-    //         }
-    //     }
-    //
-    //
-    //     //メールアドレス取得
-    //     if (mail == "") {
-    //         console.log("メール記入なし");
-    //     } else {
-    //         $(".s_mail").text(mail);
-    //     }
-    //
-    //     //電話番号取得
-    //     if (tel == "") {
-    //         console.log("電話番号記入なし");
-    //     } else {
-    //         $(".s_tel").text(tel);
-    //     }
-    //
-    //     //コメント取得
-    //     if (comment == "") {
-    //         console.log("コメントなし");
-    //     } else {
-    //         $(".s_news").text(comment);
-    //     }
-    //
-    //     //メニューhtml作成
-    //     var menu_cnt = $(".menu_title").length;
-    //     menu_cnt = menu_cnt - 1;
-    //     savemenu = $(".s_menu_ul").html();
-    //     for (var i = 0; i < menu_cnt; i++) {
-    //         $(".s_menu_ul").append(savemenu);
-    //     }
-    //
-    //     console.log("end")
-    // })
 </script>
 
 </html>
