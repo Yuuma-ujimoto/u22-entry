@@ -20,7 +20,7 @@ router.use((req, res, next) => {
 // 作成フォーム
 router.get("/",
     (req, res, next) => {
-        res.render("create-page/bd-form")
+        res.render("create-page/form")
     })
 
 // DBに仮登録

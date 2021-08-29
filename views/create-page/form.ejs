@@ -219,35 +219,46 @@
 
 
             <div class="menuwrap">
+                <div id="menu">
+                    <div class="menu_box">
+                        <div class="detail">
+                            <div class="input">
+                                <label>メニュー<span class="require">必須</span></label> <br>
+                                <input type="text" name="menu_name" class="menu_title">
+                            </div>
 
-                <div class="menu_box" id="menu">
-                    <div class="detail">
-                        <div class="input">
-                            <label>メニュー<span class="require">必須</span></label> <br>
-                            <input type="text" name="menu_name" class="menu_title">
-                            <button type="button" name="button" class="menumbtn">-</button>
+                            <div class="input">
+                                <label for="menu_img">メニューの画像</label>
+                                <input type="file" name="menu_img" id="menu_img">
+                            </div>
+
+                            <div class="input">
+                                <label>値段(税込み)</label> <br>
+                                <input type="number" name="price" maxlength="8">
+                            </div>
+
+                            <div class="input">
+                                <label>説明</label> <br>
+                                <textarea name="menu_description" id="menu_description" class="ex_box">a</textarea>
+                            </div>
+                            <hr>
                         </div>
 
-                        <div class="input">
-                            <label for="menu_img">メニューの画像</label>
-                            <input type="file" name="menu_img" id="menu_img">
-                        </div>
+                        <div class="button-wrapper">
+                            <div class="button-box">
+                                <p>メニュー数を増やす</p>
+                                <button type="button" name="button" class="menupbtn">+</button>
+                            </div>
 
-                        <div class="input">
-                            <label>値段(税込み)</label> <br>
-                            <input type="number" name="price" maxlength="8">
-                        </div>
+                            <div class="button-box">
 
-                        <div class="input">
-                            <label>説明</label> <br>
-                            <textarea name="menu_description" id="menu_description" class="ex_box">a</textarea>
+                                <p>メニューを減らす</p>
+                                <button type="button" name="button" class="menumbtn">-</button>
+                            </div>
                         </div>
-                        <hr>
                     </div>
                 </div>
-                <button type="button" name="button" class="menupbtn">+</button>
             </div>
-
             <div class="input">
                 <label for="logo_img">ロゴの画像</label>
                 <input type="file" name="logo_img" id="logo_img">
@@ -298,30 +309,60 @@
 
     $('.menupbtn').on('click', function () {
         menucnt++;
-        $("#menu"). //#each_rootを取得
-            clone(true). //上で取得した中身をコピー
-            insertBefore(".menupbtn"); //#rootsに追加
+        // $("#menu"). //#each_rootを取得
+        //     clone(true). //上で取得した中身をコピー
+        //     insertBefore(".menupbtn"); //#rootsに追加
+
+        const html = `   <div class="menu_box">
+                        <div class="detail">
+                            <div class="input">
+                                <label>メニュー<span class="require">必須</span></label> <br>
+                                <input type="text" name="menu_name" class="menu_title">
+                             </div>
+
+                            <div class="input">
+                                <label for="menu_img">メニューの画像</label>
+                                <input type="file" name="menu_img" id="menu_img">
+                            </div>
+
+                            <div class="input">
+                                <label>値段(税込み)</label> <br>
+                                <input type="number" name="price" maxlength="8">
+                            </div>
+
+                            <div class="input">
+                                <label>説明</label> <br>
+                                <textarea name="menu_description" id="menu_description" class="ex_box">a</textarea>
+                            </div>
+                            <hr>
+                        </div>
+
+                        <div class="button-wrapper">
+
+
+                        <div class="button-box">
+                        <p>メニュー数を増やす</p>
+                        <button type="button" name="button" class="menupbtn">+</button>
+                        </div>
+
+                        <div class="button-box">
+
+                        <p>メニューを減らす</p>
+                        <button type="button" name="button" class="menumbtn">-</button>
+                        </div>
+                        </div>
+
+                    </div>`
+
+        $("#menu").append(html)
+
     })
 
 
-    $(".snsmbtn").on("click", function () {
-        var cnt = $(".snswrap").find('.detail').length;
-        var snsdel = $(this).parent().parent()
-        if (cnt > 1) {
-            snsdel.remove();
-            snscnt--;
-        } else {
+    $("body").on("click", ".menumbtn", function () {
 
-        }
-    });
-
-    $(".menumbtn").on("click", function () {
-        var cnt = $(".menuwrap").find('.detail').length;
-        var menudel = $(this).parent().parent()
-        if (cnt > 1) {
-            menudel.remove();
-        } else {
-
+        if (1 < $(".menu_box").length) {
+            console.log($(this).parent().parent().parent().remove())
         }
     });
 

@@ -267,3 +267,12 @@ hr{
     top: 25%;
 
 }
+.button-wrapper{
+    display: flex;
+    justify-content: start;
+}
+
+.button-box{
+    margin-left: 10px;
+    margin-right: 25px;
+ }
