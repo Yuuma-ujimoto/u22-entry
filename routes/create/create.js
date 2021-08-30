@@ -9,6 +9,7 @@ const aws_config = require("../../config/aws")
 aws.config.update(aws_config)
 
 const set_data = require("../../util/set_data")
+const set_list = require("../../util/set_list")
 router.use((req, res, next) => {
     if (!req.session.user_id) {
         res.render("error/login-error")
@@ -97,6 +98,9 @@ router.post("/confirm-and-db-insert",
         // 送信データ取得
         const user_id = req.session.user_id
 
+        const menu_name_list = set_list(req.body.menu_name)
+        const menu_price_list = set_list(req.body.price)
+        const menu_description_list = set_list(req.body.menu_description)
         const menu_img_list = set_data(req.files.menu_img)
 
         console.log(menu_img_list)
@@ -138,7 +142,7 @@ router.post("/confirm-and-db-insert",
             }
             console.log("5")
             const sql = "insert into shop_menu(shop_id,menu_img,menu_name,price,description) value((select max(id) from shop where owner_id = ?),?,?,?,?)"
-            connection.query(sql, [user_id, params.Key, req.body.menu_name[loop_count], req.body.price[loop_count], req.body.menu_description[loop_count]], (err) => {
+            connection.query(sql, [user_id, params.Key, menu_name_list[loop_count], menu_price_list[loop_count], menu_description_list[loop_count]], (err) => {
                 if (err) {
                     console.log(err)
                     error_flag = true

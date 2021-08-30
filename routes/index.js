@@ -7,10 +7,10 @@ router.get("/",
 })
 
 
-
-router.get("/bd",(req, res) => {
-    req.session.user_id = 1
-    res.redirect("/create")
-})
+// デバッグ用にログイン処理をすっ飛ばすバックドア
+// router.get("/debug",(req, res) => {
+//     req.session.user_id = 1
+//     res.redirect("/create")
+// })
 
 module.exports = router
